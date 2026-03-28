@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divorce Vault — Your Private Divorce Documentation Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f3ef;
+  --bg2: #eceae4;
+  --surface: #ffffff;
+  --surface2: #faf9f7;
+  --border: #e0ddd6;
+  --text: #1a1814;
+  --text2: #5a5650;
+  --text3: #9a9590;
+  --accent: #8b5e3c;
+  --accent2: #c4956a;
+  --accent-bg: #f5ede4;
+  --danger: #b84040;
+  --danger-bg: #fdf0f0;
+  --success: #3a7a5a;
+  --success-bg: #eef7f2;
+  --warning: #8a6a20;
+  --warning-bg: #fdf6e3;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow2: 0 8px 32px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius2: 8px;
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–bg);
+color: var(–text);
+min-height: 100vh;
+font-size: 15px;
+line-height: 1.6;
+}
+
+/* ── LANDING PAGE ── */
+#landing {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+.landing-nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 48px;
+background: var(–surface);
+border-bottom: 1px solid var(–border);
+}
+
+.logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 22px;
+font-weight: 700;
+color: var(–text);
+letter-spacing: -0.3px;
+}
+
+.logo span { color: var(–accent); }
+
+.landing-nav-links { display: flex; gap: 12px; align-items: center; }
+
+.hero {
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 80px 24px 60px;
+background: linear-gradient(160deg, #f5f3ef 0%, #ede8df 100%);
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+top: -100px; right: -100px;
+width: 500px; height: 500px;
+background: radial-gradient(circle, rgba(139,94,60,0.07) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: var(–accent-bg);
+border: 1px solid rgba(139,94,60,0.2);
+border-radius: 100px;
+padding: 6px 14px;
+font-size: 13px;
+color: var(–accent);
+font-weight: 500;
+margin-bottom: 28px;
+}
+
+.hero h1 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(36px, 6vw, 64px);
+font-weight: 700;
+line-height: 1.15;
+color: var(–text);
+max-width: 700px;
+margin-bottom: 20px;
+}
+
+.hero h1 em { color: var(–accent); font-style: normal; }
+
+.hero p {
+font-size: 18px;
+color: var(–text2);
+max-width: 520px;
+line-height: 1.7;
+margin-bottom: 40px;
+}
+
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+.hero-features {
+display: flex;
+gap: 32px;
+margin-top: 60px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.hero-feat {
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 14px;
+color: var(–text2);
+}
+
+.hero-feat span { font-size: 18px; }
+
+/* BUTTONS */
+.btn {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+padding: 11px 22px;
+border-radius: var(–radius2);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 14px;
+font-weight: 500;
+cursor: pointer;
+border: none;
+transition: all 0.18s ease;
+text-decoration: none;
+}
+
+.btn-primary {
+background: var(–accent);
+color: white;
+}
+.btn-primary:hover { background: #7a5234; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(139,94,60,0.3); }
+
+.btn-secondary {
+background: var(–surface);
+color: var(–text);
+border: 1px solid var(–border);
+}
+.btn-secondary:hover { background: var(–bg2); }
+
+.btn-ghost {
+background: transparent;
+color: var(–text2);
+padding: 8px 14px;
+}
+.btn-ghost:hover { background: var(–bg2); color: var(–text); }
+
+.btn-danger { background: var(–danger); color: white; }
+.btn-danger:hover { background: #a03535; }
+
+.btn-sm { padding: 7px 14px; font-size: 13px; }
+.btn-lg { padding: 14px 28px; font-size: 16px; }
+
+/* ── APP SHELL ── */
+#app { display: none; min-height: 100vh; flex-direction: column; }
+
+.app-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 24px;
+height: 60px;
+background: var(–surface);
+border-bottom: 1px solid var(–border);
+position: sticky;
+top: 0;
+z-index: 100;
+}
+
+.app-logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 20px;
+font-weight: 700;
+}
+.app-logo span { color: var(–accent); }
+
+.header-right { display: flex; align-items: center; gap: 10px; }
+
+.plan-badge {
+font-size: 11px;
+font-weight: 600;
+padding: 3px 10px;
+border-radius: 100px;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+}
+.plan-free { background: var(–bg2); color: var(–text3); }
+.plan-paid { background: var(–accent-bg); color: var(–accent); border: 1px solid rgba(139,94,60,0.25); }
+
+.avatar {
+width: 34px; height: 34px;
+border-radius: 50%;
+background: var(–accent);
+color: white;
+display: flex; align-items: center; justify-content: center;
+font-weight: 600;
+font-size: 14px;
+cursor: pointer;
+}
+
+/* SIDEBAR + MAIN */
+.app-body {
+display: flex;
+flex: 1;
+}
+
+.sidebar {
+width: 220px;
+background: var(–surface);
+border-right: 1px solid var(–border);
+padding: 16px 12px;
+display: flex;
+flex-direction: column;
+gap: 4px;
+position: sticky;
+top: 60px;
+height: calc(100vh - 60px);
+overflow-y: auto;
+}
+
+.sidebar-section {
+font-size: 10px;
+font-weight: 600;
+color: var(–text3);
+letter-spacing: 1px;
+text-transform: uppercase;
+padding: 12px 8px 4px;
+}
+
+.nav-item {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 9px 12px;
+border-radius: var(–radius2);
+cursor: pointer;
+font-size: 14px;
+color: var(–text2);
+transition: all 0.15s;
+font-weight: 500;
+}
+.nav-item:hover { background: var(–bg); color: var(–text); }
+.nav-item.active { background: var(–accent-bg); color: var(–accent); font-weight: 600; }
+.nav-item .icon { font-size: 17px; width: 20px; text-align: center; }
+
+.sidebar-footer {
+margin-top: auto;
+padding-top: 12px;
+border-top: 1px solid var(–border);
+}
+
+.usage-bar {
+margin: 8px 0;
+}
+.usage-label { font-size: 12px; color: var(–text3); margin-bottom: 5px; display: flex; justify-content: space-between; }
+.bar-track { height: 5px; background: var(–bg2); border-radius: 10px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(–accent); border-radius: 10px; transition: width 0.4s; }
+.bar-fill.warn { background: var(–danger); }
+
+/* MAIN CONTENT */
+.main {
+flex: 1;
+padding: 28px;
+overflow-y: auto;
+max-width: 1100px;
+}
+
+.page-header {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+margin-bottom: 24px;
+}
+
+.page-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 26px;
+font-weight: 600;
+color: var(–text);
+}
+
+.page-sub { font-size: 14px; color: var(–text3); margin-top: 3px; }
+
+/* CARDS */
+.card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: var(–radius);
+padding: 20px;
+box-shadow: var(–shadow);
+}
+
+.card-sm { padding: 14px 16px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+/* STAT CARDS */
+.stat-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: var(–radius);
+padding: 18px 20px;
+box-shadow: var(–shadow);
+}
+.stat-label { font-size: 12px; color: var(–text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.stat-value { font-family: ‘Playfair Display’, serif; font-size: 30px; font-weight: 600; color: var(–text); line-height: 1; }
+.stat-sub { font-size: 12px; color: var(–text3); margin-top: 5px; }
+.stat-icon { font-size: 22px; margin-bottom: 10px; }
+
+/* TAGS */
+.tag {
+display: inline-flex;
+align-items: center;
+padding: 3px 10px;
+border-radius: 100px;
+font-size: 12px;
+font-weight: 500;
+gap: 4px;
+}
+.tag-neutral { background: var(–bg2); color: var(–text2); }
+.tag-accent { background: var(–accent-bg); color: var(–accent); }
+.tag-danger { background: var(–danger-bg); color: var(–danger); }
+.tag-success { background: var(–success-bg); color: var(–success); }
+.tag-warning { background: var(–warning-bg); color: var(–warning); }
+
+/* FORMS */
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: var(–text2); margin-bottom: 6px; }
+.form-control {
+width: 100%;
+padding: 10px 14px;
+border: 1px solid var(–border);
+border-radius: var(–radius2);
+background: var(–surface);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 14px;
+transition: border-color 0.15s;
+outline: none;
+}
+.form-control:focus { border-color: var(–accent); }
+textarea.form-control { resize: vertical; min-height: 90px; }
+select.form-control { cursor: pointer; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+/* TABLES */
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+text-align: left;
+font-size: 12px;
+font-weight: 600;
+color: var(–text3);
+text-transform: uppercase;
+letter-spacing: 0.5px;
+padding: 10px 14px;
+border-bottom: 1px solid var(–border);
+}
+.table td {
+padding: 12px 14px;
+font-size: 14px;
+border-bottom: 1px solid var(–border);
+color: var(–text);
+}
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: var(–surface2); }
+
+/* MODALS */
+.modal-overlay {
+position: fixed; inset: 0;
+background: rgba(0,0,0,0.4);
+z-index: 1000;
+display: none;
+align-items: center;
+justify-content: center;
+padding: 20px;
+backdrop-filter: blur(3px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+background: var(–surface);
+border-radius: var(–radius);
+width: 100%;
+max-width: 540px;
+max-height: 90vh;
+overflow-y: auto;
+box-shadow: var(–shadow2);
+}
+.modal-header {
+padding: 20px 24px 16px;
+border-bottom: 1px solid var(–border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.modal-title { font-family: ‘Playfair Display’, serif; font-size: 20px; font-weight: 600; }
+.modal-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(–text3); padding: 4px; border-radius: 6px; }
+.modal-close:hover { background: var(–bg2); color: var(–text); }
+.modal-body { padding: 20px 24px; }
+.modal-footer { padding: 12px 24px 20px; display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ALERTS */
+.alert {
+border-radius: var(–radius2);
+padding: 12px 16px;
+font-size: 14px;
+display: flex;
+align-items: flex-start;
+gap: 10px;
+margin-bottom: 16px;
+}
+.alert-info { background: #eef4fd; color: #2a5898; border: 1px solid #c5d8f5; }
+.alert-warning { background: var(–warning-bg); color: var(–warning); border: 1px solid #e8d79a; }
+.alert-danger { background: var(–danger-bg); color: var(–danger); border: 1px solid #f5c6c6; }
+.alert-success { background: var(–success-bg); color: var(–success); border: 1px solid #b3dcc5; }
+
+/* EMPTY STATES */
+.empty-state {
+text-align: center;
+padding: 50px 20px;
+color: var(–text3);
+}
+.empty-state .icon { font-size: 40px; margin-bottom: 14px; }
+.empty-state h3 { font-size: 16px; color: var(–text2); margin-bottom: 6px; }
+.empty-state p { font-size: 14px; margin-bottom: 18px; }
+
+/* SEARCH BAR */
+.search-bar {
+display: flex;
+align-items: center;
+gap: 8px;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: var(–radius2);
+padding: 8px 14px;
+margin-bottom: 16px;
+}
+.search-bar input {
+border: none;
+outline: none;
+background: none;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 14px;
+color: var(–text);
+flex: 1;
+}
+.search-bar input::placeholder { color: var(–text3); }
+
+/* AI CHAT */
+.ai-response {
+background: linear-gradient(135deg, #fdf8f4, #f9f5ef);
+border: 1px solid rgba(139,94,60,0.2);
+border-radius: var(–radius);
+padding: 18px 20px;
+font-size: 14px;
+line-height: 1.8;
+color: var(–text);
+margin-top: 16px;
+position: relative;
+}
+.ai-response::before {
+content: ‘✦ AI Analysis’;
+display: block;
+font-size: 11px;
+font-weight: 600;
+color: var(–accent);
+letter-spacing: 0.5px;
+text-transform: uppercase;
+margin-bottom: 10px;
+}
+.ai-thinking {
+display: flex;
+gap: 5px;
+align-items: center;
+padding: 12px 0;
+color: var(–accent);
+font-size: 13px;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(–accent); animation: bounce 1.2s infinite; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-8px)} }
+
+/* ONBOARDING */
+.onboard-step {
+display: flex;
+align-items: flex-start;
+gap: 14px;
+padding: 14px 0;
+border-bottom: 1px solid var(–border);
+}
+.onboard-step:last-child { border-bottom: none; }
+.step-num {
+width: 28px; height: 28px;
+border-radius: 50%;
+background: var(–accent-bg);
+color: var(–accent);
+font-weight: 700;
+font-size: 13px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+}
+.step-num.done { background: var(–success-bg); color: var(–success); }
+.step-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.step-info p { font-size: 13px; color: var(–text3); }
+
+/* TIMELINE */
+.timeline-item {
+display: flex;
+gap: 16px;
+padding: 12px 0;
+border-bottom: 1px solid var(–border);
+}
+.timeline-dot {
+width: 10px; height: 10px;
+border-radius: 50%;
+margin-top: 5px;
+flex-shrink: 0;
+}
+.tl-incident { background: var(–danger); }
+.tl-evidence { background: #5b8dd9; }
+.tl-parenting { background: var(–success); }
+.tl-asset { background: var(–accent); }
+
+/* DAILY PROMPT */
+.prompt-card {
+background: linear-gradient(135deg, #fdf8f4, #f5ede4);
+border: 1px solid rgba(139,94,60,0.2);
+border-radius: var(–radius);
+padding: 20px;
+margin-bottom: 20px;
+}
+.prompt-title { font-family: ‘Playfair Display’, serif; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.prompt-sub { font-size: 13px; color: var(–text3); margin-bottom: 16px; }
+.prompt-questions { display: flex; flex-direction: column; gap: 10px; }
+.prompt-q {
+display: flex;
+align-items: center;
+gap: 12px;
+background: white;
+border: 1px solid var(–border);
+border-radius: var(–radius2);
+padding: 12px 14px;
+cursor: pointer;
+font-size: 14px;
+transition: all 0.15s;
+}
+.prompt-q:hover { border-color: var(–accent); background: var(–accent-bg); }
+.prompt-q input[type=checkbox] { accent-color: var(–accent); width: 16px; height: 16px; }
+
+/* ADMIN */
+.admin-header {
+background: #1a1814;
+color: white;
+padding: 14px 28px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.admin-badge {
+background: var(–accent);
+color: white;
+font-size: 11px;
+font-weight: 700;
+padding: 3px 10px;
+border-radius: 100px;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+}
+.admin-sidebar {
+width: 200px;
+background: #221f1a;
+min-height: calc(100vh - 48px);
+padding: 16px 10px;
+position: sticky;
+top: 0;
+}
+.admin-nav-item {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 9px 12px;
+border-radius: 8px;
+cursor: pointer;
+font-size: 13px;
+color: #b0a89e;
+transition: all 0.15s;
+font-weight: 500;
+}
+.admin-nav-item:hover { background: #2d2922; color: white; }
+.admin-nav-item.active { background: var(–accent); color: white; }
+.admin-main { flex: 1; padding: 24px 28px; }
+
+/* PRICING */
+.pricing-card {
+background: var(–surface);
+border: 2px solid var(–border);
+border-radius: var(–radius);
+padding: 28px;
+text-align: center;
+transition: all 0.2s;
+}
+.pricing-card.featured {
+border-color: var(–accent);
+position: relative;
+}
+.pricing-card.featured::before {
+content: ‘Most Popular’;
+position: absolute;
+top: -13px; left: 50%; transform: translateX(-50%);
+background: var(–accent);
+color: white;
+font-size: 11px;
+font-weight: 700;
+padding: 4px 14px;
+border-radius: 100px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+.price-amount { font-family: ‘Playfair Display’, serif; font-size: 42px; font-weight: 700; color: var(–text); }
+.price-period { font-size: 14px; color: var(–text3); }
+.price-features { text-align: left; margin: 20px 0; display: flex; flex-direction: column; gap: 10px; }
+.price-feat { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.price-feat.yes { color: var(–text); }
+.price-feat.no { color: var(–text3); text-decoration: line-through; }
+
+/* SEVERITY */
+.sev-1 { color: var(–text3); }
+.sev-2 { color: var(–warning); }
+.sev-3 { color: #d47020; }
+.sev-4 { color: var(–danger); }
+.sev-5 { color: #8b0000; font-weight: 700; }
+
+/* FOOTER DISCLAIMER */
+.disclaimer {
+background: var(–bg2);
+border-top: 1px solid var(–border);
+padding: 10px 24px;
+font-size: 11px;
+color: var(–text3);
+text-align: center;
+}
+
+/* TOAST */
+.toast {
+position: fixed;
+bottom: 24px; right: 24px;
+background: var(–text);
+color: white;
+padding: 12px 18px;
+border-radius: var(–radius2);
+font-size: 14px;
+z-index: 2000;
+transform: translateY(80px);
+opacity: 0;
+transition: all 0.3s;
+max-width: 320px;
+box-shadow: var(–shadow2);
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success { background: var(–success); }
+.toast.error { background: var(–danger); }
+
+/* UPGRADE BANNER */
+.upgrade-banner {
+background: linear-gradient(135deg, var(–accent-bg), #fdf5ec);
+border: 1px solid rgba(139,94,60,0.25);
+border-radius: var(–radius);
+padding: 16px 20px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+margin-bottom: 20px;
+}
+.upgrade-banner p { font-size: 14px; }
+.upgrade-banner strong { color: var(–accent); }
+
+/* SECTION LOCK */
+.locked-overlay {
+position: relative;
+}
+.locked-overlay::after {
+content: ‘🔒 Upgrade to Pro to unlock’;
+position: absolute;
+inset: 0;
+background: rgba(245,243,239,0.85);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 14px;
+font-weight: 500;
+color: var(–text2);
+border-radius: var(–radius);
+backdrop-filter: blur(2px);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(–border); border-radius: 10px; }
+
+/* AUTH SCREEN */
+#auth-screen {
+min-height: 100vh;
+display: none;
+align-items: center;
+justify-content: center;
+background: var(–bg);
+padding: 24px;
+}
+
+.auth-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: var(–radius);
+padding: 40px;
+width: 100%;
+max-width: 420px;
+box-shadow: var(–shadow2);
+}
+.auth-logo {
+font-family: ‘Playfair Display’, serif;
+font-size: 24px;
+font-weight: 700;
+text-align: center;
+margin-bottom: 6px;
+}
+.auth-logo span { color: var(–accent); }
+.auth-tagline { text-align: center; color: var(–text3); font-size: 14px; margin-bottom: 28px; }
+.auth-tabs { display: flex; border-bottom: 1px solid var(–border); margin-bottom: 24px; }
+.auth-tab {
+flex: 1;
+padding: 10px;
+text-align: center;
+cursor: pointer;
+font-size: 14px;
+font-weight: 500;
+color: var(–text3);
+border-bottom: 2px solid transparent;
+transition: all 0.15s;
+}
+.auth-tab.active { color: var(–accent); border-bottom-color: var(–accent); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+.sidebar { display: none; }
+.grid-4 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+.grid-2 { grid-template-columns: 1fr; }
+.form-row { grid-template-columns: 1fr; }
+.form-row-3 { grid-template-columns: 1fr; }
+.main { padding: 16px; }
+.landing-nav { padding: 16px 20px; }
+.hero { padding: 50px 20px 40px; }
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.fade-in { animation: fadeIn 0.3s ease forwards; }
+
+/* Section visibility */
+.section { display: none; }
+.section.active { display: block; }
+
+/* ADMIN section */
+#admin-view {
+display: none;
+min-height: 100vh;
+}
+#admin-view.open { display: flex; flex-direction: column; }
+
+.admin-body { display: flex; flex: 1; }
+
+.mini-chart {
+height: 50px;
+display: flex;
+align-items: flex-end;
+gap: 3px;
+margin-top: 8px;
+}
+.bar-col {
+flex: 1;
+border-radius: 3px 3px 0 0;
+background: var(–accent);
+opacity: 0.7;
+min-height: 4px;
+transition: opacity 0.2s;
+}
+.bar-col:hover { opacity: 1; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════ LANDING PAGE -->
+
+<div id="landing">
+  <nav class="landing-nav">
+    <div class="logo">Divorce<span>Vault</span></div>
+    <div class="landing-nav-links">
+      <button class="btn btn-ghost" onclick="showPricing()">Pricing</button>
+      <button class="btn btn-secondary btn-sm" onclick="showAuth('login')">Sign In</button>
+      <button class="btn btn-primary btn-sm" onclick="showAuth('signup')">Get Started Free</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">🔒 Private & Secure by Design</div>
+    <h1>Divorce is messy.<br>Your records <em>don't have to be.</em></h1>
+    <p>Track incidents, store proof, organize finances, and build a clear timeline—all in one private, secure place.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary btn-lg" onclick="showAuth('signup')">Start Free — No Credit Card</button>
+      <button class="btn btn-secondary btn-lg" onclick="showAuth('login')">Sign In</button>
+    </div>
+    <div class="hero-features">
+      <div class="hero-feat"><span>📋</span> Incident Logging</div>
+      <div class="hero-feat"><span>📁</span> Evidence Storage</div>
+      <div class="hero-feat"><span>💰</span> Asset & Debt Tracking</div>
+      <div class="hero-feat"><span>👶</span> Parenting Log</div>
+      <div class="hero-feat"><span>✦</span> AI Pattern Analysis</div>
+      <div class="hero-feat"><span>📄</span> PDF Reports</div>
+    </div>
+  </div>
+
+  <!-- PRICING SECTION -->
+
+  <div id="pricing-section" style="background:var(--surface);padding:60px 24px;display:none;">
+    <h2 style="font-family:'Playfair Display',serif;text-align:center;font-size:36px;margin-bottom:8px;">Simple, Honest Pricing</h2>
+    <p style="text-align:center;color:var(--text3);margin-bottom:40px;">No surprises. Cancel anytime.</p>
+    <div class="grid-3" style="max-width:900px;margin:0 auto;">
+      <div class="pricing-card">
+        <div style="font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">forever</div>
+        <div class="price-features">
+          <div class="price-feat yes">✓ 5 incident logs</div>
+          <div class="price-feat yes">✓ 5 evidence uploads</div>
+          <div class="price-feat yes">✓ Timeline view</div>
+          <div class="price-feat no">✗ AI summaries</div>
+          <div class="price-feat no">✗ Unlimited logs</div>
+          <div class="price-feat no">✗ PDF export</div>
+          <div class="price-feat no">✗ Asset/debt tracking</div>
+        </div>
+        <button class="btn btn-secondary" style="width:100%" onclick="showAuth('signup')">Get Started</button>
+      </div>
+      <div class="pricing-card featured">
+        <div style="font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Pro Monthly</div>
+        <div class="price-amount">$19</div>
+        <div class="price-period">/ month</div>
+        <div class="price-features">
+          <div class="price-feat yes">✓ Unlimited incident logs</div>
+          <div class="price-feat yes">✓ Unlimited uploads</div>
+          <div class="price-feat yes">✓ AI pattern analysis</div>
+          <div class="price-feat yes">✓ PDF export by category</div>
+          <div class="price-feat yes">✓ Full asset & debt tracker</div>
+          <div class="price-feat yes">✓ Parenting log</div>
+          <div class="price-feat yes">✓ Daily guided prompts</div>
+        </div>
+        <button class="btn btn-primary" style="width:100%" onclick="showAuth('signup')">Start Pro</button>
+      </div>
+      <div class="pricing-card">
+        <div style="font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Pro Annual</div>
+        <div class="price-amount">$149</div>
+        <div class="price-period">/ year <span style="color:var(--success);font-size:13px;font-weight:600;">Save 35%</span></div>
+        <div class="price-features">
+          <div class="price-feat yes">✓ Everything in Pro</div>
+          <div class="price-feat yes">✓ Priority support</div>
+          <div class="price-feat yes">✓ Early access to features</div>
+          <div class="price-feat yes">✓ Download all your data</div>
+          <div class="price-feat yes">✓ Lawyer-ready exports</div>
+          <div class="price-feat yes">✓ Unlimited storage</div>
+          <div class="price-feat yes">✓ Advanced AI reports</div>
+        </div>
+        <button class="btn btn-secondary" style="width:100%" onclick="showAuth('signup')">Start Annual</button>
+      </div>
+    </div>
+    <p class="disclaimer" style="margin-top:32px;">This platform is for documentation and informational organization only. It is not a law firm and does not provide legal advice.</p>
+  </div>
+
+  <div class="disclaimer">
+    DivorceVault is for documentation and informational organization only. It is not a law firm and does not provide legal advice. &nbsp;|&nbsp; © 2025 DivorceVault
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ AUTH SCREEN -->
+
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">Divorce<span>Vault</span></div>
+    <div class="auth-tagline">Private. Organized. Protected.</div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</div>
+      <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</div>
+    </div>
+
+```
+<!-- LOGIN -->
+<div id="login-form">
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <input class="form-control" type="email" id="login-email" placeholder="you@email.com" value="demo@divorcevault.com">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Password</label>
+    <input class="form-control" type="password" id="login-pass" placeholder="••••••••" value="password">
+  </div>
+  <button class="btn btn-primary" style="width:100%;margin-top:4px;" onclick="doLogin()">Sign In</button>
+  <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--text3);">
+    <a href="#" onclick="switchTab('signup')" style="color:var(--accent);">Create free account</a>
+  </div>
+  <div style="text-align:center;margin-top:8px;font-size:12px;color:var(--text3);">
+    <a href="#" onclick="loginAsAdmin()" style="color:var(--text3);">Admin Access →</a>
+  </div>
+</div>
+
+<!-- SIGNUP -->
+<div id="signup-form" style="display:none;">
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">First Name</label>
+      <input class="form-control" type="text" id="signup-first" placeholder="First">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Last Name</label>
+      <input class="form-control" type="text" id="signup-last" placeholder="Last">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <input class="form-control" type="email" id="signup-email" placeholder="you@email.com">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Password</label>
+    <input class="form-control" type="password" id="signup-pass" placeholder="At least 8 characters">
+  </div>
+  <button class="btn btn-primary" style="width:100%;margin-top:4px;" onclick="doSignup()">Create Free Account</button>
+  <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--text3);">
+    Already have an account? <a href="#" onclick="switchTab('login')" style="color:var(--accent);">Sign in</a>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ MAIN APP -->
+
+<div id="app">
+  <!-- Header -->
+  <div class="app-header">
+    <div class="app-logo">Divorce<span>Vault</span></div>
+    <div class="header-right">
+      <span class="plan-badge plan-free" id="plan-badge-el">Free Plan</span>
+      <button class="btn btn-primary btn-sm" onclick="openUpgrade()">Upgrade to Pro</button>
+      <div class="avatar" id="user-avatar" onclick="showSection('settings')">J</div>
+    </div>
+  </div>
+
+  <div class="app-body">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <div class="nav-item active" onclick="showSection('dashboard')"><span class="icon">🏠</span> Dashboard</div>
+      <div class="nav-item" onclick="showSection('incidents')"><span class="icon">📋</span> Incident Log</div>
+      <div class="nav-item" onclick="showSection('evidence')"><span class="icon">📁</span> Evidence</div>
+      <div class="nav-item" onclick="showSection('timeline')"><span class="icon">📅</span> Timeline</div>
+
+```
+  <div class="sidebar-section">Financials</div>
+  <div class="nav-item" onclick="showSection('assets')"><span class="icon">💰</span> Asset Tracker</div>
+  <div class="nav-item" onclick="showSection('debts')"><span class="icon">💳</span> Debt Tracker</div>
+
+  <div class="sidebar-section">Family</div>
+  <div class="nav-item" onclick="showSection('parenting')"><span class="icon">👶</span> Parenting Log</div>
+
+  <div class="sidebar-section">Reports</div>
+  <div class="nav-item" onclick="showSection('ai-analysis')"><span class="icon">✦</span> AI Analysis</div>
+  <div class="nav-item" onclick="showSection('reports')"><span class="icon">📄</span> Reports & Export</div>
+
+  <div class="sidebar-section">Account</div>
+  <div class="nav-item" onclick="showSection('settings')"><span class="icon">⚙️</span> Settings</div>
+
+  <div class="sidebar-footer">
+    <div class="usage-bar">
+      <div class="usage-label"><span>Incident Logs</span><span id="inc-usage-label">3/5</span></div>
+      <div class="bar-track"><div class="bar-fill warn" id="inc-bar" style="width:60%"></div></div>
+    </div>
+    <div class="usage-bar">
+      <div class="usage-label"><span>Evidence Files</span><span id="ev-usage-label">2/5</span></div>
+      <div class="bar-track"><div class="bar-fill" id="ev-bar" style="width:40%"></div></div>
+    </div>
+    <button class="btn btn-primary btn-sm" style="width:100%;margin-top:8px;" onclick="openUpgrade()">Upgrade to Pro</button>
+  </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="main">
+
+  <!-- ── DASHBOARD ── -->
+  <div class="section active" id="section-dashboard">
+    <div class="prompt-card">
+      <div class="prompt-title">📆 Daily Check-In — <span id="today-date"></span></div>
+      <div class="prompt-sub">Take 2 minutes to document today. Consistency builds your case.</div>
+      <div class="prompt-questions">
+        <label class="prompt-q"><input type="checkbox"> Did anything notable happen today?</label>
+        <label class="prompt-q"><input type="checkbox"> Was any money spent from shared accounts?</label>
+        <label class="prompt-q"><input type="checkbox"> Was there any contact from your spouse?</label>
+        <label class="prompt-q"><input type="checkbox"> Were there any threats, verbal or written?</label>
+        <label class="prompt-q"><input type="checkbox"> Do you have evidence to upload?</label>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:14px;">
+        <button class="btn btn-primary btn-sm" onclick="openModal('add-incident-modal')">Log Today's Incident</button>
+        <button class="btn btn-secondary btn-sm" onclick="showSection('evidence')">Upload Evidence</button>
+      </div>
+    </div>
+
+    <!-- Onboarding Card -->
+    <div class="card" id="onboard-card" style="margin-bottom:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:4px;">Getting Started</div>
+      <div style="font-size:13px;color:var(--text3);margin-bottom:16px;">Complete these steps to build your first complete record.</div>
+      <div class="onboard-step">
+        <div class="step-num done">✓</div>
+        <div class="step-info"><h4>Create your account</h4><p>You're in. Your vault is private and encrypted.</p></div>
+      </div>
+      <div class="onboard-step" id="ob-1">
+        <div class="step-num">1</div>
+        <div class="step-info"><h4>Log your first incident</h4><p>Document a date, category, and what happened.</p></div>
+        <button class="btn btn-secondary btn-sm" style="margin-left:auto;flex-shrink:0;" onclick="openModal('add-incident-modal')">Start →</button>
+      </div>
+      <div class="onboard-step">
+        <div class="step-num">2</div>
+        <div class="step-info"><h4>Upload your first piece of evidence</h4><p>Photos, texts, PDFs — tag and date them.</p></div>
+        <button class="btn btn-secondary btn-sm" style="margin-left:auto;flex-shrink:0;" onclick="showSection('evidence')">Upload →</button>
+      </div>
+      <div class="onboard-step">
+        <div class="step-num">3</div>
+        <div class="step-info"><h4>Add your major assets</h4><p>Home, vehicles, accounts — know what you have.</p></div>
+        <button class="btn btn-secondary btn-sm" style="margin-left:auto;flex-shrink:0;" onclick="showSection('assets')">Add →</button>
+      </div>
+      <div class="onboard-step">
+        <div class="step-num">4</div>
+        <div class="step-info"><h4>Generate your first timeline</h4><p>See everything sorted chronologically.</p></div>
+        <button class="btn btn-secondary btn-sm" style="margin-left:auto;flex-shrink:0;" onclick="showSection('timeline')">View →</button>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-label">Incidents Logged</div><div class="stat-value" id="stat-incidents">3</div><div class="stat-sub">Last 30 days</div></div>
+      <div class="stat-card"><div class="stat-icon">📁</div><div class="stat-label">Evidence Files</div><div class="stat-value" id="stat-evidence">2</div><div class="stat-sub">Uploaded</div></div>
+      <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-label">Assets Tracked</div><div class="stat-value" id="stat-assets">4</div><div class="stat-sub">Total value tracked</div></div>
+      <div class="stat-card"><div class="stat-icon">👶</div><div class="stat-label">Parenting Entries</div><div class="stat-value" id="stat-parenting">2</div><div class="stat-sub">This month</div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:14px;">📋 Recent Incidents</div>
+        <div id="dashboard-incidents">
+          <div class="timeline-item">
+            <div class="timeline-dot tl-incident"></div>
+            <div><div style="font-size:13px;font-weight:500;">Verbal Altercation</div><div style="font-size:12px;color:var(--text3);">Mar 18, 2025 · Severity 4</div></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot tl-incident"></div>
+            <div><div style="font-size:13px;font-weight:500;">Financial Secrecy</div><div style="font-size:12px;color:var(--text3);">Mar 12, 2025 · Severity 3</div></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot tl-incident"></div>
+            <div><div style="font-size:13px;font-weight:500;">Missed Custody Pickup</div><div style="font-size:12px;color:var(--text3);">Mar 5, 2025 · Severity 3</div></div>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="showSection('incidents')">View All →</button>
+      </div>
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:14px;">✦ AI Quick Insight</div>
+        <div class="ai-response" style="font-size:13px;">
+          Based on your 3 incidents this month, a <strong>pattern of financial control and verbal intimidation</strong> is emerging. Incidents tend to escalate around shared financial decisions. Consider documenting bank statements and recording communication via text.
+        </div>
+        <button class="btn btn-primary btn-sm" style="margin-top:12px;" onclick="showSection('ai-analysis')">Full Analysis →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── INCIDENTS ── -->
+  <div class="section" id="section-incidents">
+    <div class="page-header">
+      <div><div class="page-title">Incident Log</div><div class="page-sub">Document every event with date, category, and detail.</div></div>
+      <button class="btn btn-primary" onclick="openModal('add-incident-modal')">+ Log Incident</button>
+    </div>
+    <div class="upgrade-banner" id="inc-upgrade-banner">
+      <p>You've used <strong>3 of 5 free incidents</strong>. Upgrade to Pro for unlimited logging.</p>
+      <button class="btn btn-primary btn-sm" onclick="openUpgrade()">Upgrade</button>
+    </div>
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Search by keyword, category, or person..." id="incident-search" oninput="filterIncidents()">
+      <select style="border:none;background:none;outline:none;font-size:13px;color:var(--text3);cursor:pointer;" id="cat-filter" onchange="filterIncidents()">
+        <option value="">All Categories</option>
+        <option>Verbal Abuse</option>
+        <option>Financial Secrecy</option>
+        <option>Physical Altercation</option>
+        <option>Property Destruction</option>
+        <option>Custody Issue</option>
+        <option>Manipulation</option>
+        <option>Threats</option>
+        <option>Disappearance</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="card">
+      <table class="table" id="incidents-table">
+        <thead><tr>
+          <th>Date</th><th>Category</th><th>Description</th><th>Severity</th><th>People</th><th></th>
+        </tr></thead>
+        <tbody id="incidents-tbody">
+          <tr>
+            <td>Mar 18, 2025</td>
+            <td><span class="tag tag-danger">Verbal Abuse</span></td>
+            <td style="max-width:200px;">Screaming and threatening language in front of children during pickup.</td>
+            <td><span class="sev-4">●●●● High</span></td>
+            <td>Spouse, Kids</td>
+            <td><button class="btn btn-ghost btn-sm">View</button></td>
+          </tr>
+          <tr>
+            <td>Mar 12, 2025</td>
+            <td><span class="tag tag-warning">Financial Secrecy</span></td>
+            <td style="max-width:200px;">Discovered $4,200 withdrawn from joint savings without discussion.</td>
+            <td><span class="sev-3">●●● Medium</span></td>
+            <td>Spouse</td>
+            <td><button class="btn btn-ghost btn-sm">View</button></td>
+          </tr>
+          <tr>
+            <td>Mar 5, 2025</td>
+            <td><span class="tag tag-neutral">Custody Issue</span></td>
+            <td style="max-width:200px;">Did not show up for agreed Tuesday pickup. No communication provided.</td>
+            <td><span class="sev-3">●●● Medium</span></td>
+            <td>Spouse, Child (Emma)</td>
+            <td><button class="btn btn-ghost btn-sm">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── EVIDENCE ── -->
+  <div class="section" id="section-evidence">
+    <div class="page-header">
+      <div><div class="page-title">Evidence Uploads</div><div class="page-sub">Store screenshots, photos, PDFs, emails, and voice notes.</div></div>
+      <button class="btn btn-primary" onclick="openModal('add-evidence-modal')">+ Upload Evidence</button>
+    </div>
+    <div class="upgrade-banner">
+      <p>You've used <strong>2 of 5 free uploads</strong>. Upgrade for unlimited secure storage.</p>
+      <button class="btn btn-primary btn-sm" onclick="openUpgrade()">Upgrade</button>
+    </div>
+    <div class="grid-3" id="evidence-grid">
+      <div class="card card-sm" style="cursor:pointer;" onclick="showToast('Evidence viewer coming soon in full version','success')">
+        <div style="font-size:28px;margin-bottom:8px;">📸</div>
+        <div style="font-weight:600;font-size:14px;">Screenshot_text_threats.png</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:4px;">Mar 18, 2025</div>
+        <div style="margin-top:8px;display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="tag tag-danger">Verbal Abuse</span>
+          <span class="tag tag-neutral">Screenshot</span>
+        </div>
+      </div>
+      <div class="card card-sm" style="cursor:pointer;" onclick="showToast('Evidence viewer coming soon in full version','success')">
+        <div style="font-size:28px;margin-bottom:8px;">📄</div>
+        <div style="font-weight:600;font-size:14px;">Bank_statement_march.pdf</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:4px;">Mar 12, 2025</div>
+        <div style="margin-top:8px;display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="tag tag-warning">Financial</span>
+          <span class="tag tag-neutral">PDF</span>
+        </div>
+      </div>
+      <div class="card card-sm" style="border:2px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;min-height:130px;" onclick="openModal('add-evidence-modal')">
+        <div style="font-size:28px;color:var(--text3);">+</div>
+        <div style="font-size:13px;color:var(--text3);margin-top:6px;">Upload Evidence</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TIMELINE ── -->
+  <div class="section" id="section-timeline">
+    <div class="page-header">
+      <div><div class="page-title">Timeline</div><div class="page-sub">All incidents and uploads sorted chronologically.</div></div>
+      <div style="display:flex;gap:8px;">
+        <select class="form-control" style="width:auto;font-size:13px;">
+          <option>All Types</option><option>Incidents</option><option>Evidence</option><option>Parenting</option>
+        </select>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;"><div class="timeline-dot tl-incident" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;"></div> Incident</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;"><div class="timeline-dot tl-evidence" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;"></div> Evidence</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;"><div class="timeline-dot tl-parenting" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;"></div> Parenting</div>
+      </div>
+      <div id="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-dot tl-incident" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;"></div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:14px;font-weight:600;">Verbal Altercation during pickup</div>
+              <span class="tag tag-danger">Incident</span>
+            </div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px;">March 18, 2025 · Verbal Abuse · Severity 4</div>
+            <div style="font-size:13px;color:var(--text2);margin-top:5px;">Screaming and threatening language in front of children during pickup.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot tl-evidence" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;"></div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:14px;font-weight:600;">Screenshot_text_threats.png uploaded</div>
+              <span class="tag tag-neutral">Evidence</span>
+            </div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px;">March 18, 2025 · Screenshot</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot tl-incident" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;"></div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:14px;font-weight:600;">$4,200 withdrawn from joint savings</div>
+              <span class="tag tag-warning">Incident</span>
+            </div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px;">March 12, 2025 · Financial Secrecy · Severity 3</div>
+            <div style="font-size:13px;color:var(--text2);margin-top:5px;">Discovered $4,200 withdrawn from joint savings without discussion.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot tl-parenting" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;"></div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:14px;font-weight:600;">Missed Tuesday pickup — no notice</div>
+              <span class="tag tag-success">Parenting</span>
+            </div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px;">March 5, 2025 · Custody</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ASSETS ── -->
+  <div class="section" id="section-assets">
+    <div class="page-header">
+      <div><div class="page-title">Asset Tracker</div><div class="page-sub">Track all marital and personal assets.</div></div>
+      <button class="btn btn-primary" onclick="openModal('add-asset-modal')">+ Add Asset</button>
+    </div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="stat-card"><div class="stat-label">Total Assets</div><div class="stat-value">$428K</div></div>
+      <div class="stat-card"><div class="stat-label">Real Estate</div><div class="stat-value">$320K</div></div>
+      <div class="stat-card"><div class="stat-label">Accounts</div><div class="stat-value">$68K</div></div>
+      <div class="stat-card"><div class="stat-label">Other</div><div class="stat-value">$40K</div></div>
+    </div>
+    <div class="card">
+      <table class="table">
+        <thead><tr><th>Asset</th><th>Category</th><th>Value</th><th>Owner</th><th>Notes</th><th></th></tr></thead>
+        <tbody id="assets-tbody">
+          <tr><td>Family Home — 412 Oak St</td><td><span class="tag tag-accent">Real Estate</span></td><td>$320,000</td><td>Joint</td><td>Currently resided in by user</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>2020 Toyota Camry</td><td><span class="tag tag-neutral">Vehicle</span></td><td>$18,000</td><td>Joint</td><td>Registered in spouse's name</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>Chase Joint Savings</td><td><span class="tag tag-warning">Bank Account</span></td><td>$24,000</td><td>Joint</td><td>$4,200 unexplained withdrawal Mar 12</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>401k — Morgan Stanley</td><td><span class="tag tag-success">Retirement</span></td><td>$44,000</td><td>Spouse</td><td>Opened 2018, vested</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>Bitcoin Holdings</td><td><span class="tag tag-neutral">Crypto</span></td><td>~$22,000</td><td>Spouse</td><td>Approximate — exact wallet unknown</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── DEBTS ── -->
+  <div class="section" id="section-debts">
+    <div class="page-header">
+      <div><div class="page-title">Debt Tracker</div><div class="page-sub">Shared and individual debts and obligations.</div></div>
+      <button class="btn btn-primary" onclick="openModal('add-debt-modal')">+ Add Debt</button>
+    </div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="stat-card"><div class="stat-label">Total Debt</div><div class="stat-value">$167K</div></div>
+      <div class="stat-card"><div class="stat-label">Mortgage</div><div class="stat-value">$148K</div></div>
+      <div class="stat-card"><div class="stat-label">Credit Cards</div><div class="stat-value">$12K</div></div>
+      <div class="stat-card"><div class="stat-label">Other Loans</div><div class="stat-value">$7K</div></div>
+    </div>
+    <div class="card">
+      <table class="table">
+        <thead><tr><th>Debt</th><th>Type</th><th>Balance</th><th>Owner</th><th>Monthly</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Home Mortgage — Chase</td><td><span class="tag tag-accent">Mortgage</span></td><td>$148,000</td><td>Joint</td><td>$1,240</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>Capital One Venture Card</td><td><span class="tag tag-danger">Credit Card</span></td><td>$8,400</td><td>Spouse</td><td>$210</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>Chase Freedom Card</td><td><span class="tag tag-danger">Credit Card</span></td><td>$3,600</td><td>Joint</td><td>$90</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>Personal Loan — Spouse</td><td><span class="tag tag-neutral">Personal Loan</span></td><td>$7,000</td><td>Spouse</td><td>$180</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── PARENTING ── -->
+  <div class="section" id="section-parenting">
+    <div class="page-header">
+      <div><div class="page-title">Parenting Log</div><div class="page-sub">Track pickups, missed visits, and communication issues.</div></div>
+      <button class="btn btn-primary" onclick="openModal('add-parenting-modal')">+ Add Entry</button>
+    </div>
+    <div class="card">
+      <table class="table">
+        <thead><tr><th>Date</th><th>Type</th><th>Child(ren)</th><th>Details</th><th>Resolved</th><th></th></tr></thead>
+        <tbody id="parenting-tbody">
+          <tr>
+            <td>Mar 5, 2025</td>
+            <td><span class="tag tag-danger">Missed Pickup</span></td>
+            <td>Emma (7)</td>
+            <td>Did not arrive for scheduled 3pm Tuesday pickup. No call or text provided.</td>
+            <td><span class="tag tag-danger">No</span></td>
+            <td><button class="btn btn-ghost btn-sm">View</button></td>
+          </tr>
+          <tr>
+            <td>Feb 28, 2025</td>
+            <td><span class="tag tag-warning">Communication</span></td>
+            <td>Emma (7)</td>
+            <td>Returned Emma with no snacks, dirty clothing, and reported she cried the whole weekend.</td>
+            <td><span class="tag tag-neutral">N/A</span></td>
+            <td><button class="btn btn-ghost btn-sm">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── AI ANALYSIS ── -->
+  <div class="section" id="section-ai-analysis">
+    <div class="page-header">
+      <div><div class="page-title">AI Pattern Analysis</div><div class="page-sub">Identify recurring behaviors across your documentation.</div></div>
+      <button class="btn btn-primary" onclick="runAIAnalysis()">✦ Run Full Analysis</button>
+    </div>
+    <div class="alert alert-info">
+      <span>ℹ️</span>
+      <div>This analysis is based only on what you've documented. It is not legal advice. Share results with your attorney for professional guidance.</div>
+    </div>
+    <div id="ai-analysis-output">
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="card">
+          <div style="font-weight:600;margin-bottom:12px;">📊 Pattern Summary</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:14px;">Financial Control</span><span class="tag tag-danger">High Risk</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:14px;">Verbal Intimidation</span><span class="tag tag-danger">High Risk</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:14px;">Custody Inconsistency</span><span class="tag tag-warning">Moderate</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+              <span style="font-size:14px;">Property Concealment</span><span class="tag tag-warning">Moderate</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div style="font-weight:600;margin-bottom:12px;">📅 Incident Frequency</div>
+          <div class="mini-chart">
+            <div class="bar-col" style="height:30%"></div>
+            <div class="bar-col" style="height:50%"></div>
+            <div class="bar-col" style="height:20%"></div>
+            <div class="bar-col" style="height:80%"></div>
+            <div class="bar-col" style="height:60%"></div>
+            <div class="bar-col" style="height:100%"></div>
+            <div class="bar-col" style="height:70%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--text3);margin-top:6px;text-align:center;">Last 7 weeks — incidents increasing</div>
+        </div>
+      </div>
+      <div class="ai-response" id="ai-full-text">
+        <strong>Financial Control Pattern:</strong> You have documented 2 incidents of financial secrecy or unauthorized financial moves in the past 30 days. The $4,200 withdrawal without communication is a strong indicator of asset dissipation — a common tactic used to reduce marital estate value before legal proceedings. Recommendation: obtain bank statements for the past 24 months immediately and consider requesting a financial hold through your attorney.<br><br>
+        <strong>Verbal Intimidation Pattern:</strong> 1 documented incident of threatening language in front of children. This is legally relevant in custody proceedings. Document the specific language used, any witnesses (including the children's school if behavior is discussed), and photograph any visible distress in children.<br><br>
+        <strong>Custody Inconsistency:</strong> A missed pickup with no communication documented on March 5. Courts view habitual missed pickups seriously, especially without notice. Continue logging all custody events with timestamps and any electronic communication (texts, emails).<br><br>
+        <strong>Recommended Next Steps:</strong> (1) Secure copies of all financial accounts. (2) Request your attorney file for financial disclosures. (3) Keep logging custody violations. (4) Consider a parenting coordinator referral.
+      </div>
+    </div>
+    <div id="ai-loading" style="display:none;">
+      <div class="ai-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span style="margin-left:6px;">Analyzing your documentation...</span></div>
+    </div>
+  </div>
+
+  <!-- ── REPORTS ── -->
+  <div class="section" id="section-reports">
+    <div class="page-header">
+      <div><div class="page-title">Reports & Export</div><div class="page-sub">Generate clean PDF summaries for attorneys and mediators.</div></div>
+    </div>
+    <div class="upgrade-banner">
+      <p>PDF export requires <strong>Pro Plan</strong>. Upgrade to generate lawyer-ready reports.</p>
+      <button class="btn btn-primary btn-sm" onclick="openUpgrade()">Upgrade to Export</button>
+    </div>
+    <div class="grid-2">
+      <div class="card locked-overlay">
+        <div style="font-size:22px;margin-bottom:8px;">📄</div>
+        <div style="font-weight:600;margin-bottom:4px;">Full Incident Report</div>
+        <div style="font-size:13px;color:var(--text3);margin-bottom:14px;">All incidents with descriptions, categories, and severity ratings.</div>
+        <div class="form-row" style="margin-bottom:12px;">
+          <div><label class="form-label">From</label><input class="form-control" type="date"></div>
+          <div><label class="form-label">To</label><input class="form-control" type="date"></div>
+        </div>
+        <button class="btn btn-primary btn-sm">Generate PDF</button>
+      </div>
+      <div class="card locked-overlay">
+        <div style="font-size:22px;margin-bottom:8px;">💰</div>
+        <div style="font-weight:600;margin-bottom:4px;">Financial Overview Report</div>
+        <div style="font-size:13px;color:var(--text3);margin-bottom:14px;">Assets, debts, and financial incidents summarized.</div>
+        <button class="btn btn-primary btn-sm" style="margin-top:40px;">Generate PDF</button>
+      </div>
+      <div class="card locked-overlay">
+        <div style="font-size:22px;margin-bottom:8px;">👶</div>
+        <div style="font-weight:600;margin-bottom:4px;">Parenting & Custody Report</div>
+        <div style="font-size:13px;color:var(--text3);margin-bottom:14px;">All parenting entries with dates and resolution status.</div>
+        <button class="btn btn-primary btn-sm" style="margin-top:40px;">Generate PDF</button>
+      </div>
+      <div class="card locked-overlay">
+        <div style="font-size:22px;margin-bottom:8px;">✦</div>
+        <div style="font-weight:600;margin-bottom:4px;">AI Pattern Analysis Report</div>
+        <div style="font-size:13px;color:var(--text3);margin-bottom:14px;">Full AI-generated behavioral pattern analysis.</div>
+        <button class="btn btn-primary btn-sm" style="margin-top:40px;">Generate PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SETTINGS ── -->
+  <div class="section" id="section-settings">
+    <div class="page-header">
+      <div><div class="page-title">Settings</div><div class="page-sub">Manage your account and preferences.</div></div>
+    </div>
+    <div class="grid-2">
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div style="font-weight:600;margin-bottom:14px;">👤 Account</div>
+          <div class="form-group"><label class="form-label">Full Name</label><input class="form-control" value="Jane Doe" id="s-name"></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-control" value="jane@email.com" id="s-email"></div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-control" type="password" value="••••••••"></div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Account updated','success')">Save Changes</button>
+        </div>
+        <div class="card" style="margin-bottom:16px;">
+          <div style="font-weight:600;margin-bottom:14px;">🔔 Notifications</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;"><input type="checkbox" checked style="accent-color:var(--accent);"> Daily check-in reminder</label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;"><input type="checkbox" checked style="accent-color:var(--accent);"> Weekly summary email</label>
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;"><input type="checkbox"> New AI insight available</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div style="font-weight:600;margin-bottom:10px;">💳 Subscription</div>
+          <div style="font-size:14px;color:var(--text2);margin-bottom:14px;">You are on the <strong>Free Plan</strong>.</div>
+          <button class="btn btn-primary" style="width:100%;" onclick="openUpgrade()">Upgrade to Pro — $19/mo</button>
+          <div style="text-align:center;margin-top:8px;font-size:12px;color:var(--text3);">or $149/year (save 35%)</div>
+        </div>
+        <div class="card" style="margin-bottom:16px;">
+          <div style="font-weight:600;margin-bottom:10px;">📥 Data</div>
+          <div style="font-size:13px;color:var(--text3);margin-bottom:12px;">Export a full backup of your vault data.</div>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Data export requires Pro Plan','')">Export All Data</button>
+        </div>
+        <div class="card" style="border-color:rgba(184,64,64,0.3);">
+          <div style="font-weight:600;margin-bottom:10px;color:var(--danger);">⚠️ Danger Zone</div>
+          <div style="font-size:13px;color:var(--text3);margin-bottom:12px;">Permanently delete your account and all data.</div>
+          <button class="btn btn-danger btn-sm" onclick="showToast('Please contact support to delete your account','')">Delete Account</button>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-warning" style="margin-top:16px;">
+      <span>⚖️</span>
+      <div><strong>Legal Disclaimer:</strong> This platform is for documentation and informational organization only. It is not a law firm and does not provide legal advice. Always consult a licensed attorney for legal guidance.</div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+```
+
+  </div><!-- /app-body -->
+
+  <div class="disclaimer">
+    DivorceVault is for documentation and informational organization only. It is not a law firm and does not provide legal advice. &nbsp;|&nbsp; © 2025 DivorceVault
+  </div>
+</div><!-- /app -->
+
+<!-- ══════════════════════════════════════════════════════ ADMIN VIEW -->
+
+<div id="admin-view">
+  <div class="admin-header">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;">Divorce<span style="color:var(--accent2);">Vault</span></div>
+      <div class="admin-badge">Admin Control Center</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="font-size:13px;color:#9a9590;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f59491989c9bb5919c839a8796908394809981db969a98">[email&#160;protected]</a></span>
+      <button class="btn btn-secondary btn-sm" onclick="exitAdmin()">← Exit Admin</button>
+    </div>
+  </div>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div style="font-size:10px;font-weight:600;color:#5a5650;letter-spacing:1px;text-transform:uppercase;padding:8px 12px 4px;">Overview</div>
+      <div class="admin-nav-item active" onclick="adminNav(this,'admin-dashboard')"><span>📊</span> Dashboard</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-users')"><span>👥</span> Users</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-payments')"><span>💳</span> Payments</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-analytics')"><span>📈</span> Analytics</div>
+      <div style="font-size:10px;font-weight:600;color:#5a5650;letter-spacing:1px;text-transform:uppercase;padding:12px 12px 4px;">Marketing</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-marketing')"><span>📣</span> Marketing AI</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-landing')"><span>🖥️</span> Landing Pages</div>
+      <div style="font-size:10px;font-weight:600;color:#5a5650;letter-spacing:1px;text-transform:uppercase;padding:12px 12px 4px;">System</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-automation')"><span>⚡</span> Automation</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-ai-advisor')"><span>✦</span> AI Advisor</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-reports')"><span>📄</span> Reports</div>
+      <div class="admin-nav-item" onclick="adminNav(this,'admin-security')"><span>🔒</span> Security</div>
+    </div>
+    <div class="admin-main">
+
+```
+  <!-- ADMIN DASHBOARD -->
+  <div class="section active" id="admin-dashboard">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Business Overview</div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="stat-card"><div class="stat-label">Total Users</div><div class="stat-value">1,247</div><div class="stat-sub">+23 this week</div></div>
+      <div class="stat-card"><div class="stat-label">Active Subscriptions</div><div class="stat-value">312</div><div class="stat-sub">25% conversion</div></div>
+      <div class="stat-card"><div class="stat-label">Monthly Revenue</div><div class="stat-value">$5,928</div><div class="stat-sub">+12% vs last month</div></div>
+      <div class="stat-card"><div class="stat-label">Churn Rate</div><div class="stat-value">3.2%</div><div class="stat-sub">Below 5% target ✓</div></div>
+    </div>
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:12px;">Revenue Growth (Last 8 Weeks)</div>
+        <div class="mini-chart" style="height:80px;">
+          <div class="bar-col" style="height:40%"></div>
+          <div class="bar-col" style="height:55%"></div>
+          <div class="bar-col" style="height:48%"></div>
+          <div class="bar-col" style="height:70%"></div>
+          <div class="bar-col" style="height:62%"></div>
+          <div class="bar-col" style="height:85%"></div>
+          <div class="bar-col" style="height:78%"></div>
+          <div class="bar-col" style="height:100%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:6px;"><span>Jan</span><span>Feb</span><span>Mar</span></div>
+      </div>
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:12px;">Feature Usage Trends</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Incident Log</span><span>89%</span></div><div class="bar-track"><div class="bar-fill" style="width:89%"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Evidence Upload</span><span>72%</span></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>AI Analysis</span><span>58%</span></div><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Asset Tracker</span><span>44%</span></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:8px;">Recent Signups</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ffceefdeee7a1e2cfe8e2eee6e3a1ece0e2">[email&#160;protected]</a></span><span style="color:var(--text3);">2h ago</span></div>
+          <div style="display:flex;justify-content:space-between;"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f7839885859284d99db78e969f9898d994989a">[email&#160;protected]</a></span><span style="color:var(--text3);">5h ago</span></div>
+          <div style="display:flex;justify-content:space-between;"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="452e282c29292037052a3031292a2a2e6b262a28">[email&#160;protected]</a></span><span style="color:var(--text3);">Yesterday</span></div>
+          <div style="display:flex;justify-content:space-between;"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="482c662b202d26082f25292124662b2725">[email&#160;protected]</a></span><span style="color:var(--text3);">Yesterday</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:8px;">Recent Payments</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;"><span>sarah.m — Pro Monthly</span><span style="color:var(--success);">+$19</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>r.jones — Pro Annual</span><span style="color:var(--success);">+$149</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>a.patel — Pro Monthly</span><span style="color:var(--danger);">Failed</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>l.foster — Pro Annual</span><span style="color:var(--success);">+$149</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:8px;">Traffic Sources</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;"><span>🔍 Google Organic</span><span>42%</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>📱 TikTok</span><span>28%</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>📘 Facebook</span><span>15%</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>🔗 Direct</span><span>10%</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>Other</span><span>5%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN USERS -->
+  <div class="section" id="admin-users">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">User Management</div>
+    <div class="search-bar" style="margin-bottom:16px;">
+      <span>🔍</span>
+      <input type="text" placeholder="Search by email, name, or ID...">
+    </div>
+    <div class="card">
+      <table class="table">
+        <thead><tr><th>User</th><th>Plan</th><th>Incidents</th><th>Uploads</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="197378777c597c74787075377a7674">[email&#160;protected]</a></td><td><span class="tag tag-neutral">Free</span></td><td>3</td><td>2</td><td>Mar 1, 2025</td><td><span class="tag tag-success">Active</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="32415340535a1c5f72555f535b5e1c515d5f">[email&#160;protected]</a></td><td><span class="tag tag-accent">Pro</span></td><td>28</td><td>47</td><td>Feb 14, 2025</td><td><span class="tag tag-success">Active</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e496ca8e8b8a8197a49d858c8b8bca878b89">[email&#160;protected]</a></td><td><span class="tag tag-accent">Pro Annual</span></td><td>102</td><td>89</td><td>Jan 3, 2025</td><td><span class="tag tag-success">Active</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d3b2fda3b2a7b6bf93b4beb2babffdb0bcbe">[email&#160;protected]</a></td><td><span class="tag tag-danger">Lapsed</span></td><td>14</td><td>22</td><td>Dec 10, 2024</td><td><span class="tag tag-warning">Inactive</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADMIN PAYMENTS -->
+  <div class="section" id="admin-payments">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Payments & Billing</div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="stat-card"><div class="stat-label">MRR</div><div class="stat-value">$5,928</div></div>
+      <div class="stat-card"><div class="stat-label">ARPU</div><div class="stat-value">$19.00</div></div>
+      <div class="stat-card"><div class="stat-label">Failed Payments</div><div class="stat-value">4</div><div class="stat-sub" style="color:var(--danger);">Needs attention</div></div>
+      <div class="stat-card"><div class="stat-label">Total Profit</div><div class="stat-value">$4,742</div><div class="stat-sub">After Stripe fees</div></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div style="font-weight:600;">Transaction History</div>
+        <select class="form-control" style="width:auto;font-size:13px;"><option>This Month</option><option>Last Month</option><option>Last 3 Months</option></select>
+      </div>
+      <table class="table">
+        <thead><tr><th>User</th><th>Plan</th><th>Amount</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e391cd898c8d8690a39a828b8c8ccd808c8e">[email&#160;protected]</a></td><td>Pro Annual</td><td>$149.00</td><td>Mar 20</td><td><span class="tag tag-success">Paid</span></td><td><button class="btn btn-ghost btn-sm">Refund</button></td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="365a1850594542534476515b575f5a1855595b">[email&#160;protected]</a></td><td>Pro Annual</td><td>$149.00</td><td>Mar 18</td><td><span class="tag tag-success">Paid</span></td><td><button class="btn btn-ghost btn-sm">Refund</button></td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f7c6e7d6e6721624f68626e6663216c6062">[email&#160;protected]</a></td><td>Pro Monthly</td><td>$19.00</td><td>Mar 15</td><td><span class="tag tag-success">Paid</span></td><td><button class="btn btn-ghost btn-sm">Refund</button></td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b4a055b4a5f4e476b4c464a424705484446">[email&#160;protected]</a></td><td>Pro Monthly</td><td>$19.00</td><td>Mar 12</td><td><span class="tag tag-danger">Failed</span></td><td><button class="btn btn-ghost btn-sm">Retry</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADMIN ANALYTICS -->
+  <div class="section" id="admin-analytics">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Analytics & Trends</div>
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card"><div style="font-weight:600;margin-bottom:12px;">User Retention</div><div class="mini-chart" style="height:80px;"><div class="bar-col" style="height:90%"></div><div class="bar-col" style="height:85%"></div><div class="bar-col" style="height:82%"></div><div class="bar-col" style="height:88%"></div><div class="bar-col" style="height:80%"></div><div class="bar-col" style="height:84%"></div></div><div style="font-size:12px;color:var(--text3);margin-top:6px;">Average retention: 84%</div></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:12px;">Conversion Funnel</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
+          <div style="background:var(--accent);color:white;padding:7px 12px;border-radius:6px;">Visitors: 12,440</div>
+          <div style="background:var(--accent-bg);color:var(--accent);padding:7px 12px;border-radius:6px;margin:0 10px;">Signups: 1,247 (10%)</div>
+          <div style="background:#f0f0f0;color:var(--text2);padding:7px 12px;border-radius:6px;margin:0 20px;">Trials: 502 (40%)</div>
+          <div style="background:var(--success-bg);color:var(--success);padding:7px 12px;border-radius:6px;margin:0 30px;">Paid: 312 (25%)</div>
+        </div>
+      </div>
+    </div>
+    <div class="card"><div style="font-weight:600;margin-bottom:12px;">Geographic Distribution</div><div style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;"><div>🇺🇸 United States — 68%</div><div>🇨🇦 Canada — 14%</div><div>🇬🇧 UK — 8%</div><div>🇦🇺 Australia — 6%</div><div>Other — 4%</div></div></div>
+  </div>
+
+  <!-- ADMIN MARKETING -->
+  <div class="section" id="admin-marketing">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Marketing AI Center</div>
+    <div class="card" style="margin-bottom:16px;">
+      <div style="font-weight:600;margin-bottom:12px;">✦ Generate Ad Copy</div>
+      <div class="form-row" style="margin-bottom:12px;">
+        <div><label class="form-label">Platform</label>
+        <select class="form-control"><option>TikTok Ad Script</option><option>Instagram Caption</option><option>Google Ads Copy</option><option>Facebook Campaign</option><option>Email Campaign</option></select></div>
+        <div><label class="form-label">Goal</label>
+        <select class="form-control"><option>Signups</option><option>Pro Upgrades</option><option>Retargeting</option><option>Brand Awareness</option></select></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="generateAdCopy()">Generate AI Ad Copy</button>
+      <div id="ad-copy-output" style="margin-top:12px;display:none;" class="ai-response">
+        <strong>TikTok Ad Script — Signups</strong><br><br>
+        [Hook 0–3s]: "If you're going through a divorce, you NEED to see this..." <br><br>
+        [Problem 3–8s]: "Most people lose thousands in assets because they didn't document properly." <br><br>
+        [Solution 8–18s]: "DivorceVault lets you log incidents, store evidence, track assets, and generate lawyer-ready reports — all in one private place." <br><br>
+        [CTA 18–20s]: "Start free today. Link in bio." <br><br>
+        <em>Hashtags: #divorce #divorcetips #legaladvice #selfadvocate #divorcerecovery</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN LANDING -->
+  <div class="section" id="admin-landing">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Landing Page Manager</div>
+    <div class="card" style="margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div style="font-weight:600;">Published Pages</div>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Page builder opening...','success')">+ New Page</button>
+      </div>
+      <table class="table">
+        <thead><tr><th>Page</th><th>URL</th><th>Status</th><th>Visits</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td>Homepage</td><td>/</td><td><span class="tag tag-success">Live</span></td><td>12,440</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>Pricing</td><td>/pricing</td><td><span class="tag tag-success">Live</span></td><td>4,220</td><td><button class="btn btn-ghost btn-sm">Edit</button></td></tr>
+          <tr><td>A/B Test - Hero v2</td><td>/lp/hero-b</td><td><span class="tag tag-warning">Testing</span></td><td>880</td><td><button class="btn btn-ghost btn-sm">Results</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADMIN AUTOMATION -->
+  <div class="section" id="admin-automation">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Automation Engine</div>
+    <div class="card">
+      <div style="font-weight:600;margin-bottom:14px;">Active Workflows</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div><div style="font-weight:500;font-size:14px;">🎉 Welcome Email</div><div style="font-size:12px;color:var(--text3);">Triggered on signup · 1,247 sent</div></div>
+          <span class="tag tag-success">Active</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div><div style="font-weight:500;font-size:14px;">⬆️ Upgrade Offer</div><div style="font-size:12px;color:var(--text3);">Day 3 for free users · 892 sent</div></div>
+          <span class="tag tag-success">Active</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div><div style="font-weight:500;font-size:14px;">💤 Inactive User Nudge</div><div style="font-size:12px;color:var(--text3);">After 7 days inactive · 203 sent</div></div>
+          <span class="tag tag-success">Active</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div><div style="font-weight:500;font-size:14px;">🔄 Retention Campaign</div><div style="font-size:12px;color:var(--text3);">Before cancellation · 44 sent</div></div>
+          <span class="tag tag-warning">Paused</span>
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-sm" style="margin-top:14px;" onclick="showToast('Workflow builder coming in v2','success')">+ Create Workflow</button>
+    </div>
+  </div>
+
+  <!-- ADMIN AI ADVISOR -->
+  <div class="section" id="admin-ai-advisor">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">✦ AI Business Advisor</div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="form-group">
+        <label class="form-label">Ask Your Business Advisor</label>
+        <input class="form-control" type="text" id="advisor-input" placeholder="e.g. Why did revenue drop last week? What features drive conversions?">
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="runAdvisor()">Ask Advisor</button>
+      <div id="advisor-loading" style="display:none;"><div class="ai-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span style="margin-left:6px;">Analyzing platform data...</span></div></div>
+      <div id="advisor-output" style="display:none;margin-top:12px;" class="ai-response"></div>
+    </div>
+    <div class="card">
+      <div style="font-weight:600;margin-bottom:12px;">💡 Proactive Insights</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="alert alert-warning"><span>📉</span><div><strong>Churn Risk:</strong> 22 Pro users haven't logged in for 14+ days. Consider sending a personalized check-in email with a helpful tip.</div></div>
+        <div class="alert alert-info"><span>💰</span><div><strong>Revenue Opportunity:</strong> 89 free users are at their log limit. A targeted upgrade prompt could yield ~$1,700 MRR.</div></div>
+        <div class="alert alert-success"><span>🚀</span><div><strong>Growth Signal:</strong> TikTok traffic up 40% this week. Consider increasing ad spend on divorce-related content.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN REPORTS -->
+  <div class="section" id="admin-reports">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Automated Reports</div>
+    <div class="grid-2">
+      <div class="card"><div style="font-weight:600;margin-bottom:8px;">📊 Daily Revenue Report</div><div style="font-size:13px;color:var(--text3);margin-bottom:12px;">Auto-generated at midnight. Last run: Today 12:00am</div><button class="btn btn-secondary btn-sm" onclick="showToast('Report downloaded','success')">Download</button></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:8px;">📈 Weekly Growth Summary</div><div style="font-size:13px;color:var(--text3);margin-bottom:12px;">Every Monday. Last run: Mar 24, 2025</div><button class="btn btn-secondary btn-sm" onclick="showToast('Report downloaded','success')">Download</button></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:8px;">📣 Marketing Performance</div><div style="font-size:13px;color:var(--text3);margin-bottom:12px;">Monthly. Last run: Mar 1, 2025</div><button class="btn btn-secondary btn-sm" onclick="showToast('Report downloaded','success')">Download</button></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:8px;">👥 User Engagement Report</div><div style="font-size:13px;color:var(--text3);margin-bottom:12px;">Weekly. Last run: Mar 24, 2025</div><button class="btn btn-secondary btn-sm" onclick="showToast('Report downloaded','success')">Download</button></div>
+    </div>
+  </div>
+
+  <!-- ADMIN SECURITY -->
+  <div class="section" id="admin-security">
+    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Security & Access</div>
+    <div class="grid-2">
+      <div class="card"><div style="font-weight:600;margin-bottom:12px;">🔒 Two-Factor Authentication</div><div style="font-size:13px;color:var(--text3);margin-bottom:12px;">2FA is enabled for your admin account.</div><span class="tag tag-success">✓ Enabled</span></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:12px;">👤 Admin Accounts</div>
+        <div style="font-size:13px;margin-bottom:10px;display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;justify-content:space-between;"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97f6f3fafef9d7f3fee1f8e5f4f2e1f6e2fbe3b9f4f8fa">[email&#160;protected]</a></span><span class="tag tag-accent">Super Admin</span></div>
+          <div style="display:flex;justify-content:space-between;"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b686e6b6b74696f5b7f726d7469787e6d7a6e776f35787476">[email&#160;protected]</a></span><span class="tag tag-neutral">Support</span></div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Invite sent','success')">+ Invite Admin</button>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <div style="font-weight:600;margin-bottom:12px;">📋 Admin Activity Log</div>
+      <table class="table">
+        <thead><tr><th>Admin</th><th>Action</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c7a6a3aaaea987a3aeb1a8b5a4a2b1a6b2abb3e9a4a8aa">[email&#160;protected]</a></td><td>Logged in</td><td>Today 9:12am</td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92f3f6fffbfcd2f6fbe4fde0f1f7e4f3e7fee6bcf1fdff">[email&#160;protected]</a></td><td>Viewed user <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f3e712f3e2b3a331f38323e3633713c3032">[email&#160;protected]</a></td><td>Today 9:15am</td></tr>
+          <tr><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a1d2d4d1d1ced3d5e1c5c8d7ced3c2c4d7c0d4cdd58fc2cecc">[email&#160;protected]</a></td><td>Reset password for user</td><td>Yesterday 3:40pm</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /admin-main -->
+```
+
+  </div><!-- /admin-body -->
+</div><!-- /admin-view -->
+
+<!-- ══════════════════════════════════════════════════════ MODALS -->
+
+<!-- Add Incident -->
+
+<div class="modal-overlay" id="add-incident-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Log Incident</div>
+      <button class="modal-close" onclick="closeModal('add-incident-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Date *</label><input class="form-control" type="date" id="inc-date"></div>
+        <div class="form-group"><label class="form-label">Time</label><input class="form-control" type="time" id="inc-time"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category *</label>
+        <select class="form-control" id="inc-cat">
+          <option value="">Select category...</option>
+          <option>Verbal Abuse</option><option>Financial Secrecy</option><option>Physical Altercation</option>
+          <option>Property Destruction</option><option>Custody Issue</option><option>Manipulation</option>
+          <option>Threats</option><option>Disappearance</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Description *</label><textarea class="form-control" id="inc-desc" placeholder="Describe what happened in as much detail as possible..."></textarea></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">People Involved</label><input class="form-control" id="inc-people" placeholder="e.g. Spouse, Kids, Neighbor"></div>
+        <div class="form-group"><label class="form-label">Witnesses</label><input class="form-control" id="inc-witnesses" placeholder="e.g. Sister Jane, Police"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Severity (1 = Minor, 5 = Severe)</label>
+        <select class="form-control" id="inc-severity">
+          <option value="1">1 — Minor / Uncomfortable</option>
+          <option value="2">2 — Concerning</option>
+          <option value="3" selected>3 — Significant</option>
+          <option value="4">4 — Serious / Threatening</option>
+          <option value="5">5 — Severe / Dangerous</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('add-incident-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveIncident()">Save Incident</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Evidence -->
+
+<div class="modal-overlay" id="add-evidence-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Upload Evidence</div>
+      <button class="modal-close" onclick="closeModal('add-evidence-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="border:2px dashed var(--border);border-radius:var(--radius);padding:30px;text-align:center;margin-bottom:16px;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:32px;margin-bottom:8px;">📁</div>
+        <div style="font-weight:500;margin-bottom:4px;">Drop files here or click to upload</div>
+        <div style="font-size:12px;color:var(--text3);">Photos, PDFs, screenshots, emails, voice notes</div>
+        <input type="file" style="display:none;" id="ev-file">
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Date of Evidence</label><input class="form-control" type="date" id="ev-date"></div>
+        <div class="form-group"><label class="form-label">Category Tag</label>
+          <select class="form-control" id="ev-tag"><option>Verbal Abuse</option><option>Financial</option><option>Custody</option><option>Property</option><option>Communication</option><option>Other</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Notes</label><textarea class="form-control" id="ev-notes" placeholder="Add context about this evidence..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('add-evidence-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEvidence()">Save Evidence</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Asset -->
+
+<div class="modal-overlay" id="add-asset-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add Asset</div>
+      <button class="modal-close" onclick="closeModal('add-asset-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Asset Name *</label><input class="form-control" id="asset-name" placeholder="e.g. Family Home, 2020 Toyota Camry"></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Category</label>
+          <select class="form-control" id="asset-cat"><option>Real Estate</option><option>Vehicle</option><option>Bank Account</option><option>Retirement Account</option><option>Crypto</option><option>Business Asset</option><option>Valuable / Jewelry</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Estimated Value ($)</label><input class="form-control" type="number" id="asset-value" placeholder="0"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Ownership</label>
+        <select class="form-control" id="asset-owner"><option>Joint</option><option>Mine</option><option>Spouse's</option><option>Unknown</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Notes</label><textarea class="form-control" id="asset-notes" placeholder="Any relevant details, account numbers, location..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('add-asset-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveAsset()">Save Asset</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Debt -->
+
+<div class="modal-overlay" id="add-debt-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add Debt</div>
+      <button class="modal-close" onclick="closeModal('add-debt-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Debt Name *</label><input class="form-control" id="debt-name" placeholder="e.g. Chase Mortgage, Capital One Card"></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Type</label>
+          <select class="form-control" id="debt-type"><option>Mortgage</option><option>Credit Card</option><option>Personal Loan</option><option>Tax Debt</option><option>Student Loan</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Balance ($)</label><input class="form-control" type="number" id="debt-balance" placeholder="0"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Ownership</label>
+          <select class="form-control" id="debt-owner"><option>Joint</option><option>Mine</option><option>Spouse's</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Monthly Payment ($)</label><input class="form-control" type="number" id="debt-monthly" placeholder="0"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('add-debt-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDebt()">Save Debt</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Parenting -->
+
+<div class="modal-overlay" id="add-parenting-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add Parenting Entry</div>
+      <button class="modal-close" onclick="closeModal('add-parenting-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Date *</label><input class="form-control" type="date" id="par-date"></div>
+        <div class="form-group"><label class="form-label">Type</label>
+          <select class="form-control" id="par-type"><option>Missed Pickup</option><option>Late Pickup</option><option>Communication Issue</option><option>Behavior Concern</option><option>School Issue</option><option>Violation of Order</option><option>Positive</option><option>Other</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Child(ren) Involved</label><input class="form-control" id="par-child" placeholder="e.g. Emma (7), Jacob (10)"></div>
+      <div class="form-group"><label class="form-label">Details *</label><textarea class="form-control" id="par-details" placeholder="Describe what happened..."></textarea></div>
+      <div class="form-group"><label class="form-label">Resolved?</label>
+        <select class="form-control" id="par-resolved"><option>No</option><option>Yes</option><option>N/A</option></select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('add-parenting-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveParenting()">Save Entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- Upgrade Modal -->
+
+<div class="modal-overlay" id="upgrade-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Upgrade to Pro</div>
+      <button class="modal-close" onclick="closeModal('upgrade-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;padding:10px 0 20px;">
+        <div style="font-size:40px;margin-bottom:12px;">🔓</div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:6px;">Unlock Your Full Vault</div>
+        <div style="font-size:14px;color:var(--text3);">Unlimited logs, AI analysis, PDF exports, and more.</div>
+      </div>
+      <div class="grid-2" style="gap:12px;margin-bottom:16px;">
+        <div style="border:2px solid var(--accent);border-radius:var(--radius);padding:16px;text-align:center;">
+          <div style="font-weight:600;font-size:13px;color:var(--accent);margin-bottom:6px;">MONTHLY</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;">$19</div>
+          <div style="font-size:12px;color:var(--text3);">per month</div>
+          <button class="btn btn-primary" style="width:100%;margin-top:12px;" onclick="window.open('https://buy.stripe.com/bJe28sbkXdeB1R3f3kdEs03')">Choose Monthly</button>
+        </div>
+        <div style="border:2px solid var(--success);border-radius:var(--radius);padding:16px;text-align:center;position:relative;">
+          <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--success);color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;text-transform:uppercase;">Save 35%</div>
+          <div style="font-weight:600;font-size:13px;color:var(--success);margin-bottom:6px;">ANNUAL</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;">$149</div>
+          <div style="font-size:12px;color:var(--text3);">per year</div>
+          <button class="btn" style="width:100%;margin-top:12px;background:var(--success);color:white;" onclick="window.open('https://buy.stripe.com/bJeaEY3Sv8Yl3ZbaN4dEs02')">Choose Annual</button>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);text-align:center;">Powered by Stripe · Cancel anytime · Encrypted and private</div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+
+<div class="toast" id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+// ══════════════════════ STATE
+const state = {
+user: null,
+isPro: false,
+incidents: [
+{ date: ‘Mar 18, 2025’, category: ‘Verbal Abuse’, desc: ‘Screaming and threatening language in front of children during pickup.’, severity: 4, people: ‘Spouse, Kids’, witnesses: ‘Neighbor’ },
+{ date: ‘Mar 12, 2025’, category: ‘Financial Secrecy’, desc: ‘Discovered $4,200 withdrawn from joint savings without discussion.’, severity: 3, people: ‘Spouse’, witnesses: ‘’ },
+{ date: ‘Mar 5, 2025’, category: ‘Custody Issue’, desc: ‘Did not show up for agreed Tuesday pickup. No communication provided.’, severity: 3, people: ‘Spouse, Child (Emma)’, witnesses: ‘’ },
+],
+assets: [],
+debts: [],
+parenting: [],
+evidence: [],
+};
+
+// ══════════════════════ AUTH
+function showAuth(tab) {
+document.getElementById(‘landing’).style.display = ‘none’;
+document.getElementById(‘auth-screen’).style.display = ‘flex’;
+switchTab(tab);
+}
+
+function switchTab(tab) {
+document.getElementById(‘tab-login’).classList.toggle(‘active’, tab === ‘login’);
+document.getElementById(‘tab-signup’).classList.toggle(‘active’, tab === ‘signup’);
+document.getElementById(‘login-form’).style.display = tab === ‘login’ ? ‘block’ : ‘none’;
+document.getElementById(‘signup-form’).style.display = tab === ‘signup’ ? ‘block’ : ‘none’;
+}
+
+function doLogin() {
+const email = document.getElementById(‘login-email’).value;
+if (!email) { showToast(‘Please enter your email’,‘error’); return; }
+state.user = { name: ‘Jane Doe’, email, initials: ‘J’ };
+launchApp();
+}
+
+function doSignup() {
+const first = document.getElementById(‘signup-first’).value;
+const email = document.getElementById(‘signup-email’).value;
+if (!first || !email) { showToast(‘Please fill in required fields’,‘error’); return; }
+state.user = { name: first + ’ ’ + (document.getElementById(‘signup-last’).value || ‘’), email, initials: first[0].toUpperCase() };
+launchApp();
+}
+
+function loginAsAdmin() {
+document.getElementById(‘auth-screen’).style.display = ‘none’;
+document.getElementById(‘admin-view’).classList.add(‘open’);
+}
+
+function exitAdmin() {
+document.getElementById(‘admin-view’).classList.remove(‘open’);
+document.getElementById(‘landing’).style.display = ‘flex’;
+}
+
+function launchApp() {
+document.getElementById(‘auth-screen’).style.display = ‘none’;
+document.getElementById(‘app’).style.display = ‘flex’;
+document.getElementById(‘user-avatar’).textContent = state.user.initials;
+document.getElementById(‘today-date’).textContent = new Date().toLocaleDateString(‘en-US’, {weekday:‘long’, month:‘long’, day:‘numeric’});
+updateUsage();
+showToast(‘Welcome to DivorceVault 🔒’,‘success’);
+}
+
+// ══════════════════════ NAVIGATION
+function showSection(id) {
+document.querySelectorAll(’.section’).forEach(s => s.classList.remove(‘active’));
+document.querySelectorAll(’.nav-item’).forEach(n => n.classList.remove(‘active’));
+const el = document.getElementById(‘section-’ + id);
+if (el) el.classList.add(‘active’);
+document.querySelectorAll(’.nav-item’).forEach(n => {
+if (n.getAttribute(‘onclick’) && n.getAttribute(‘onclick’).includes(”’” + id + “’”)) n.classList.add(‘active’);
+});
+}
+
+function showPricing() {
+const ps = document.getElementById(‘pricing-section’);
+ps.style.display = ps.style.display === ‘none’ ? ‘block’ : ‘none’;
+if (ps.style.display === ‘block’) ps.scrollIntoView({behavior:‘smooth’});
+}
+
+// ══════════════════════ MODALS
+function openModal(id) { document.getElementById(id).classList.add(‘open’); }
+function closeModal(id) { document.getElementById(id).classList.remove(‘open’); }
+
+// Close modals on overlay click
+document.addEventListener(‘click’, e => {
+if (e.target.classList.contains(‘modal-overlay’)) e.target.classList.remove(‘open’);
+});
+
+// ══════════════════════ INCIDENTS
+function saveIncident() {
+const date = document.getElementById(‘inc-date’).value;
+const cat = document.getElementById(‘inc-cat’).value;
+const desc = document.getElementById(‘inc-desc’).value;
+if (!date || !cat || !desc) { showToast(‘Please fill in required fields’,‘error’); return; }
+
+if (!state.isPro && state.incidents.length >= 5) {
+closeModal(‘add-incident-modal’);
+openUpgrade();
+return;
+}
+
+const inc = {
+date: new Date(date).toLocaleDateString(‘en-US’, {month:‘short’, day:‘numeric’, year:‘numeric’}),
+category: cat,
+desc,
+severity: parseInt(document.getElementById(‘inc-severity’).value),
+people: document.getElementById(‘inc-people’).value,
+witnesses: document.getElementById(‘inc-witnesses’).value,
+};
+state.incidents.unshift(inc);
+renderIncidents();
+updateStats();
+updateUsage();
+closeModal(‘add-incident-modal’);
+showToast(‘Incident logged ✓’,‘success’);
+
+// Reset form
+[‘inc-date’,‘inc-time’,‘inc-desc’,‘inc-people’,‘inc-witnesses’].forEach(id => document.getElementById(id).value = ‘’);
+document.getElementById(‘inc-cat’).value = ‘’;
+document.getElementById(‘inc-severity’).value = ‘3’;
+}
+
+function renderIncidents() {
+const tbody = document.getElementById(‘incidents-tbody’);
+const filter = document.getElementById(‘incident-search’)?.value?.toLowerCase() || ‘’;
+const catFilter = document.getElementById(‘cat-filter’)?.value || ‘’;
+
+const rows = state.incidents.filter(i => {
+const matchText = !filter || i.desc.toLowerCase().includes(filter) || i.category.toLowerCase().includes(filter) || i.people.toLowerCase().includes(filter);
+const matchCat = !catFilter || i.category === catFilter;
+return matchText && matchCat;
+});
+
+tbody.innerHTML = rows.map(i => {
+const sevMap = {1:‘sev-1’,2:‘sev-2’,3:‘sev-3’,4:‘sev-4’,5:‘sev-5’};
+const sevLabel = {1:‘● Minimal’,2:‘●● Low’,3:‘●●● Medium’,4:‘●●●● High’,5:‘●●●●● Severe’};
+const tagClass = {
+‘Verbal Abuse’:‘tag-danger’,‘Financial Secrecy’:‘tag-warning’,‘Custody Issue’:‘tag-neutral’,
+‘Threats’:‘tag-danger’,‘Manipulation’:‘tag-warning’,‘Physical Altercation’:‘tag-danger’,
+‘Property Destruction’:‘tag-danger’,‘Disappearance’:‘tag-neutral’,‘Other’:‘tag-neutral’
+};
+return `<tr> <td>${i.date}</td> <td><span class="tag ${tagClass[i.category]||'tag-neutral'}">${i.category}</span></td> <td style="max-width:200px;">${i.desc}</td> <td><span class="${sevMap[i.severity]}">${sevLabel[i.severity]}</span></td> <td>${i.people||'—'}</td> <td><button class="btn btn-ghost btn-sm">View</button></td> </tr>`;
+}).join(’’);
+}
+
+function filterIncidents() { renderIncidents(); }
+
+// ══════════════════════ ASSETS
+function saveAsset() {
+const name = document.getElementById(‘asset-name’).value;
+if (!name) { showToast(‘Please enter an asset name’,‘error’); return; }
+const asset = {
+name, category: document.getElementById(‘asset-cat’).value,
+value: parseInt(document.getElementById(‘asset-value’).value)||0,
+owner: document.getElementById(‘asset-owner’).value,
+notes: document.getElementById(‘asset-notes’).value,
+};
+state.assets.push(asset);
+const tbody = document.getElementById(‘assets-tbody’);
+const tagMap = {‘Real Estate’:‘tag-accent’,‘Vehicle’:‘tag-neutral’,‘Bank Account’:‘tag-warning’,‘Retirement Account’:‘tag-success’,‘Crypto’:‘tag-neutral’,‘Business Asset’:‘tag-accent’,‘Valuable / Jewelry’:‘tag-accent’,‘Other’:‘tag-neutral’};
+tbody.insertAdjacentHTML(‘beforeend’, `<tr>
+<td>${asset.name}</td>
+<td><span class="tag ${tagMap[asset.category]||'tag-neutral'}">${asset.category}</span></td>
+<td>$${asset.value.toLocaleString()}</td>
+<td>${asset.owner}</td>
+<td>${asset.notes||’—’}</td>
+<td><button class="btn btn-ghost btn-sm">Edit</button></td>
+
+  </tr>`);
+  closeModal('add-asset-modal');
+  showToast('Asset added ✓','success');
+  ['asset-name','asset-value','asset-notes'].forEach(id => document.getElementById(id).value = '');
+}
+
+// ══════════════════════ DEBTS
+function saveDebt() {
+const name = document.getElementById(‘debt-name’).value;
+if (!name) { showToast(‘Please enter a debt name’,‘error’); return; }
+const debt = {
+name, type: document.getElementById(‘debt-type’).value,
+balance: parseInt(document.getElementById(‘debt-balance’).value)||0,
+owner: document.getElementById(‘debt-owner’).value,
+monthly: parseInt(document.getElementById(‘debt-monthly’).value)||0,
+};
+state.debts.push(debt);
+const tbody = document.querySelector(’#section-debts tbody’);
+const tagMap = {‘Mortgage’:‘tag-accent’,‘Credit Card’:‘tag-danger’,‘Personal Loan’:‘tag-neutral’,‘Tax Debt’:‘tag-danger’,‘Student Loan’:‘tag-neutral’,‘Other’:‘tag-neutral’};
+tbody.insertAdjacentHTML(‘beforeend’, `<tr>
+<td>${debt.name}</td>
+<td><span class="tag ${tagMap[debt.type]||'tag-neutral'}">${debt.type}</span></td>
+<td>$${debt.balance.toLocaleString()}</td>
+<td>${debt.owner}</td>
+<td>$${debt.monthly.toLocaleString()}</td>
+<td><button class="btn btn-ghost btn-sm">Edit</button></td>
+
+  </tr>`);
+  closeModal('add-debt-modal');
+  showToast('Debt added ✓','success');
+  ['debt-name','debt-balance','debt-monthly'].forEach(id => document.getElementById(id).value = '');
+}
+
+// ══════════════════════ PARENTING
+function saveParenting() {
+const date = document.getElementById(‘par-date’).value;
+const details = document.getElementById(‘par-details’).value;
+if (!date || !details) { showToast(‘Please fill in required fields’,‘error’); return; }
+const entry = {
+date: new Date(date).toLocaleDateString(‘en-US’, {month:‘short’, day:‘numeric’, year:‘numeric’}),
+type: document.getElementById(‘par-type’).value,
+child: document.getElementById(‘par-child’).value||’—’,
+details,
+resolved: document.getElementById(‘par-resolved’).value,
+};
+state.parenting.push(entry);
+const tbody = document.getElementById(‘parenting-tbody’);
+const tagMap = {‘Missed Pickup’:‘tag-danger’,‘Late Pickup’:‘tag-warning’,‘Communication Issue’:‘tag-warning’,‘Behavior Concern’:‘tag-warning’,‘School Issue’:‘tag-neutral’,‘Violation of Order’:‘tag-danger’,‘Positive’:‘tag-success’,‘Other’:‘tag-neutral’};
+const resMap = {‘No’:‘tag-danger’,‘Yes’:‘tag-success’,‘N/A’:‘tag-neutral’};
+tbody.insertAdjacentHTML(‘beforeend’, `<tr>
+<td>${entry.date}</td>
+<td><span class="tag ${tagMap[entry.type]||'tag-neutral'}">${entry.type}</span></td>
+<td>${entry.child}</td>
+<td>${entry.details}</td>
+<td><span class="tag ${resMap[entry.resolved]}">${entry.resolved}</span></td>
+<td><button class="btn btn-ghost btn-sm">View</button></td>
+
+  </tr>`);
+  closeModal('add-parenting-modal');
+  showToast('Entry added ✓','success');
+  updateStats();
+  ['par-date','par-child','par-details'].forEach(id => document.getElementById(id).value = '');
+}
+
+// ══════════════════════ EVIDENCE
+function saveEvidence() {
+if (!state.isPro && (state.evidence.length + 2) >= 5) {
+closeModal(‘add-evidence-modal’);
+openUpgrade();
+return;
+}
+state.evidence.push({ tag: document.getElementById(‘ev-tag’).value, date: document.getElementById(‘ev-date’).value });
+closeModal(‘add-evidence-modal’);
+showToast(‘Evidence saved ✓’,‘success’);
+updateStats();
+updateUsage();
+}
+
+// ══════════════════════ AI ANALYSIS
+async function runAIAnalysis() {
+const btn = document.querySelector(’#section-ai-analysis .btn-primary’);
+const loading = document.getElementById(‘ai-loading’);
+const output = document.getElementById(‘ai-analysis-output’);
+btn.disabled = true; btn.textContent = ‘Analyzing…’;
+loading.style.display = ‘block’;
+output.style.display = ‘none’;
+
+const incidentSummary = state.incidents.map(i => `${i.date}: ${i.category} — ${i.desc}`).join(’\n’);
+
+try {
+const res = await fetch(‘https://api.anthropic.com/v1/messages’, {
+method: ‘POST’,
+headers: { ‘Content-Type’: ‘application/json’ },
+body: JSON.stringify({
+model: ‘claude-sonnet-4-20250514’,
+max_tokens: 1000,
+messages: [{
+role: ‘user’,
+content: `You are a supportive assistant helping a person document their divorce process. Analyze the following incidents and identify behavioral patterns such as financial control, verbal intimidation, custody inconsistency, manipulation, or property concealment. Provide actionable, compassionate guidance. Be specific but never provide legal advice — always recommend consulting an attorney.\n\nIncidents documented:\n${incidentSummary}\n\nProvide a structured analysis with: (1) Identified patterns, (2) Specific observations, (3) Recommended next steps. Keep it under 300 words, clear and empowering.`
+}]
+})
+});
+const data = await res.json();
+const text = data.content?.map(c => c.text||’’).join(’\n’) || ‘Analysis complete. Please review your documented incidents.’;
+document.getElementById(‘ai-full-text’).innerHTML = text.replace(/\n/g, ‘<br>’);
+} catch(e) {
+document.getElementById(‘ai-full-text’).innerHTML = ‘Analysis ready based on your documentation. Pattern of financial secrecy and custody inconsistency detected. Recommend securing financial records and continuing to log all custody events.’;
+}
+
+loading.style.display = ‘none’;
+output.style.display = ‘block’;
+btn.disabled = false; btn.textContent = ‘✦ Run Full Analysis’;
+}
+
+// ══════════════════════ ADMIN AI ADVISOR
+async function runAdvisor() {
+const input = document.getElementById(‘advisor-input’).value;
+if (!input) { showToast(‘Please enter a question’,’’); return; }
+const loading = document.getElementById(‘advisor-loading’);
+const output = document.getElementById(‘advisor-output’);
+loading.style.display = ‘block’;
+output.style.display = ‘none’;
+
+try {
+const res = await fetch(‘https://api.anthropic.com/v1/messages’, {
+method: ‘POST’,
+headers: { ‘Content-Type’: ‘application/json’ },
+body: JSON.stringify({
+model: ‘claude-sonnet-4-20250514’,
+max_tokens: 1000,
+messages: [{
+role: ‘user’,
+content: `You are a strategic AI business advisor for DivorceVault, a SaaS divorce documentation platform. Platform stats: 1,247 users, 312 paid subscribers (25% conversion), $5,928 MRR, 3.2% churn. Top features by usage: Incident Log 89%, Evidence Upload 72%, AI Analysis 58%, Asset Tracker 44%. Traffic: Google Organic 42%, TikTok 28%, Facebook 15%.\n\nAdmin question: ${input}\n\nProvide concrete, actionable strategic advice in 150-200 words.`
+}]
+})
+});
+const data = await res.json();
+const text = data.content?.map(c => c.text||’’).join(’\n’) || ‘Strategic analysis complete.’;
+output.innerHTML = text.replace(/\n/g, ‘<br>’);
+} catch(e) {
+output.innerHTML = ‘Strategic recommendation: Focus on TikTok growth (28% traffic, high intent audience). Launch a retargeting campaign for free users at log limit — estimated 40% conversion uplift.’;
+}
+
+loading.style.display = ‘none’;
+output.style.display = ‘block’;
+}
+
+function generateAdCopy() {
+document.getElementById(‘ad-copy-output’).style.display = ‘block’;
+showToast(‘Ad copy generated ✓’,‘success’);
+}
+
+// ══════════════════════ ADMIN NAV
+function adminNav(el, sectionId) {
+document.querySelectorAll(’.admin-nav-item’).forEach(n => n.classList.remove(‘active’));
+el.classList.add(‘active’);
+document.querySelectorAll(’#admin-view .section’).forEach(s => s.classList.remove(‘active’));
+const sec = document.getElementById(sectionId);
+if (sec) sec.classList.add(‘active’);
+}
+
+// ══════════════════════ UPGRADE
+function openUpgrade() { openModal(‘upgrade-modal’); }
+
+function simulatePayment(plan) {
+closeModal(‘upgrade-modal’);
+showToast(‘Stripe payment flow would open here. Upgrading demo to Pro…’,‘success’);
+setTimeout(() => {
+state.isPro = true;
+document.getElementById(‘plan-badge-el’).textContent = plan === ‘annual’ ? ‘Pro Annual’ : ‘Pro Monthly’;
+document.getElementById(‘plan-badge-el’).className = ’plan-badge plan
