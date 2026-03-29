@@ -4,7 +4,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Divorce Vault — Your Private Divorce Documentation Platform</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -2368,4 +2367,63 @@ showToast(‘Stripe payment flow would open here. Upgrading demo to Pro…’,�
 setTimeout(() => {
 state.isPro = true;
 document.getElementById(‘plan-badge-el’).textContent = plan === ‘annual’ ? ‘Pro Annual’ : ‘Pro Monthly’;
-document.getElementById(‘plan-badge-el’).className = ’plan-badge plan
+document.getElementById(‘plan-badge-el’).className = ‘plan-badge plan-paid’;
+document.querySelectorAll(’.upgrade-banner’).forEach(b => b.style.display = ‘none’);
+document.querySelectorAll(’.locked-overlay’).forEach(b => b.classList.remove(‘locked-overlay’));
+updateUsage();
+showToast(‘Pro Plan activated! 🎉 All features unlocked.’,‘success’);
+}, 1000);
+}
+
+// ══════════════════════ STATS & USAGE
+function updateStats() {
+document.getElementById(‘stat-incidents’).textContent = state.incidents.length;
+document.getElementById(‘stat-evidence’).textContent = state.evidence.length + 2;
+document.getElementById(‘stat-parenting’).textContent = state.parenting.length + 2;
+}
+
+function updateUsage() {
+const maxFree = 5;
+const incCount = state.incidents.length;
+const evCount = state.evidence.length + 2;
+
+if (!state.isPro) {
+const incPct = Math.min(100, (incCount/maxFree)*100);
+document.getElementById(‘inc-bar’).style.width = incPct + ‘%’;
+document.getElementById(‘inc-bar’).className = ‘bar-fill’ + (incPct >= 80 ? ’ warn’ : ‘’);
+document.getElementById(‘inc-usage-label’).textContent = `${incCount}/${maxFree}`;
+
+```
+const evPct = Math.min(100, (evCount/maxFree)*100);
+document.getElementById('ev-bar').style.width = evPct + '%';
+document.getElementById('ev-usage-label').textContent = `${evCount}/${maxFree}`;
+```
+
+} else {
+document.getElementById(‘inc-bar’).style.width = ‘100%’;
+document.getElementById(‘inc-bar’).className = ‘bar-fill’;
+document.getElementById(‘inc-usage-label’).textContent = `${incCount} (unlimited)`;
+document.getElementById(‘ev-bar’).style.width = ‘100%’;
+document.getElementById(‘ev-usage-label’).textContent = `${evCount} (unlimited)`;
+}
+}
+
+// ══════════════════════ TOAST
+function showToast(msg, type=’’) {
+const t = document.getElementById(‘toast’);
+t.textContent = msg;
+t.className = ‘toast show’ + (type ? ’ ’ + type : ‘’);
+clearTimeout(window._toastTimer);
+window._toastTimer = setTimeout(() => { t.className = ‘toast’; }, 3000);
+}
+
+// ══════════════════════ INIT
+try {
+document.getElementById(‘inc-date’).value = new Date().toISOString().split(‘T’)[0];
+document.getElementById(‘ev-date’).value = new Date().toISOString().split(‘T’)[0];
+document.getElementById(‘par-date’).value = new Date().toISOString().split(‘T’)[0];
+} catch(e) {}
+</script>
+
+</body>
+</html>
