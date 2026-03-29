@@ -32,12 +32,12 @@
   --radius2: 8px;
 }
 
-- { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-font-family: ‘DM Sans’, sans-serif;
-background: var(–bg);
-color: var(–text);
+font-family: 'DM Sans', sans-serif;
+background: var(--bg);
+color: var(--text);
 min-height: 100vh;
 font-size: 15px;
 line-height: 1.6;
@@ -55,19 +55,19 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 20px 48px;
-background: var(–surface);
-border-bottom: 1px solid var(–border);
+background: var(--surface);
+border-bottom: 1px solid var(--border);
 }
 
 .logo {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 22px;
 font-weight: 700;
-color: var(–text);
+color: var(--text);
 letter-spacing: -0.3px;
 }
 
-.logo span { color: var(–accent); }
+.logo span { color: var(--accent); }
 
 .landing-nav-links { display: flex; gap: 12px; align-items: center; }
 
@@ -85,7 +85,7 @@ overflow: hidden;
 }
 
 .hero::before {
-content: ‘’;
+content: '';
 position: absolute;
 top: -100px; right: -100px;
 width: 500px; height: 500px;
@@ -108,31 +108,31 @@ z-index: 1;
 display: inline-flex;
 align-items: center;
 gap: 6px;
-background: var(–accent-bg);
+background: var(--accent-bg);
 border: 1px solid rgba(139,94,60,0.2);
 border-radius: 100px;
 padding: 6px 14px;
 font-size: 13px;
-color: var(–accent);
+color: var(--accent);
 font-weight: 500;
 margin-bottom: 28px;
 }
 
 .hero h1 {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: clamp(36px, 6vw, 64px);
 font-weight: 700;
 line-height: 1.15;
-color: var(–text);
+color: var(--text);
 max-width: 700px;
 margin-bottom: 20px;
 }
 
-.hero h1 em { color: var(–accent); font-style: normal; }
+.hero h1 em { color: var(--accent); font-style: normal; }
 
 .hero p {
 font-size: 18px;
-color: var(–text2);
+color: var(--text2);
 max-width: 520px;
 line-height: 1.7;
 margin-bottom: 40px;
@@ -153,7 +153,7 @@ display: flex;
 align-items: center;
 gap: 8px;
 font-size: 14px;
-color: var(–text2);
+color: var(--text2);
 }
 
 .hero-feat span { font-size: 18px; }
@@ -164,8 +164,8 @@ display: inline-flex;
 align-items: center;
 gap: 7px;
 padding: 11px 22px;
-border-radius: var(–radius2);
-font-family: ‘DM Sans’, sans-serif;
+border-radius: var(--radius2);
+font-family: 'DM Sans', sans-serif;
 font-size: 14px;
 font-weight: 500;
 cursor: pointer;
@@ -175,27 +175,27 @@ text-decoration: none;
 }
 
 .btn-primary {
-background: var(–accent) !important;
+background: var(--accent) !important;
 background-color: #8b5e3c !important;
 color: white !important;
 }
 .btn-primary:hover { background: #7a5234; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(139,94,60,0.3); }
 
 .btn-secondary {
-background: var(–surface);
-color: var(–text);
-border: 1px solid var(–border);
+background: var(--surface);
+color: var(--text);
+border: 1px solid var(--border);
 }
-.btn-secondary:hover { background: var(–bg2); }
+.btn-secondary:hover { background: var(--bg2); }
 
 .btn-ghost {
 background: transparent;
-color: var(–text2);
+color: var(--text2);
 padding: 8px 14px;
 }
-.btn-ghost:hover { background: var(–bg2); color: var(–text); }
+.btn-ghost:hover { background: var(--bg2); color: var(--text); }
 
-.btn-danger { background: var(–danger); color: white; }
+.btn-danger { background: var(--danger); color: white; }
 .btn-danger:hover { background: #a03535; }
 
 .btn-sm { padding: 7px 14px; font-size: 13px; }
@@ -210,19 +210,19 @@ justify-content: space-between;
 align-items: center;
 padding: 0 24px;
 height: 60px;
-background: var(–surface);
-border-bottom: 1px solid var(–border);
+background: var(--surface);
+border-bottom: 1px solid var(--border);
 position: sticky;
 top: 0;
 z-index: 100;
 }
 
 .app-logo {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 20px;
 font-weight: 700;
 }
-.app-logo span { color: var(–accent); }
+.app-logo span { color: var(--accent); }
 
 .header-right { display: flex; align-items: center; gap: 10px; }
 
@@ -234,13 +234,13 @@ border-radius: 100px;
 letter-spacing: 0.5px;
 text-transform: uppercase;
 }
-.plan-free { background: var(–bg2); color: var(–text3); }
-.plan-paid { background: var(–accent-bg); color: var(–accent); border: 1px solid rgba(139,94,60,0.25); }
+.plan-free { background: var(--bg2); color: var(--text3); }
+.plan-paid { background: var(--accent-bg); color: var(--accent); border: 1px solid rgba(139,94,60,0.25); }
 
 .avatar {
 width: 34px; height: 34px;
 border-radius: 50%;
-background: var(–accent);
+background: var(--accent);
 color: white;
 display: flex; align-items: center; justify-content: center;
 font-weight: 600;
@@ -256,8 +256,8 @@ flex: 1;
 
 .sidebar {
 width: 220px;
-background: var(–surface);
-border-right: 1px solid var(–border);
+background: var(--surface);
+border-right: 1px solid var(--border);
 padding: 16px 12px;
 display: flex;
 flex-direction: column;
@@ -271,7 +271,7 @@ overflow-y: auto;
 .sidebar-section {
 font-size: 10px;
 font-weight: 600;
-color: var(–text3);
+color: var(--text3);
 letter-spacing: 1px;
 text-transform: uppercase;
 padding: 12px 8px 4px;
@@ -282,30 +282,30 @@ display: flex;
 align-items: center;
 gap: 10px;
 padding: 9px 12px;
-border-radius: var(–radius2);
+border-radius: var(--radius2);
 cursor: pointer;
 font-size: 14px;
-color: var(–text2);
+color: var(--text2);
 transition: all 0.15s;
 font-weight: 500;
 }
-.nav-item:hover { background: var(–bg); color: var(–text); }
-.nav-item.active { background: var(–accent-bg); color: var(–accent); font-weight: 600; }
+.nav-item:hover { background: var(--bg); color: var(--text); }
+.nav-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
 .nav-item .icon { font-size: 17px; width: 20px; text-align: center; }
 
 .sidebar-footer {
 margin-top: auto;
 padding-top: 12px;
-border-top: 1px solid var(–border);
+border-top: 1px solid var(--border);
 }
 
 .usage-bar {
 margin: 8px 0;
 }
-.usage-label { font-size: 12px; color: var(–text3); margin-bottom: 5px; display: flex; justify-content: space-between; }
-.bar-track { height: 5px; background: var(–bg2); border-radius: 10px; overflow: hidden; }
-.bar-fill { height: 100%; background: var(–accent); border-radius: 10px; transition: width 0.4s; }
-.bar-fill.warn { background: var(–danger); }
+.usage-label { font-size: 12px; color: var(--text3); margin-bottom: 5px; display: flex; justify-content: space-between; }
+.bar-track { height: 5px; background: var(--bg2); border-radius: 10px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--accent); border-radius: 10px; transition: width 0.4s; }
+.bar-fill.warn { background: var(--danger); }
 
 /* MAIN CONTENT */
 .main {
@@ -323,21 +323,21 @@ margin-bottom: 24px;
 }
 
 .page-title {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 26px;
 font-weight: 600;
-color: var(–text);
+color: var(--text);
 }
 
-.page-sub { font-size: 14px; color: var(–text3); margin-top: 3px; }
+.page-sub { font-size: 14px; color: var(--text3); margin-top: 3px; }
 
 /* CARDS */
 .card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: var(–radius);
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius);
 padding: 20px;
-box-shadow: var(–shadow);
+box-shadow: var(--shadow);
 }
 
 .card-sm { padding: 14px 16px; }
@@ -348,15 +348,15 @@ box-shadow: var(–shadow);
 
 /* STAT CARDS */
 .stat-card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: var(–radius);
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius);
 padding: 18px 20px;
-box-shadow: var(–shadow);
+box-shadow: var(--shadow);
 }
-.stat-label { font-size: 12px; color: var(–text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-.stat-value { font-family: ‘Playfair Display’, serif; font-size: 30px; font-weight: 600; color: var(–text); line-height: 1; }
-.stat-sub { font-size: 12px; color: var(–text3); margin-top: 5px; }
+.stat-label { font-size: 12px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.stat-value { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 600; color: var(--text); line-height: 1; }
+.stat-sub { font-size: 12px; color: var(--text3); margin-top: 5px; }
 .stat-icon { font-size: 22px; margin-bottom: 10px; }
 
 /* TAGS */
@@ -369,28 +369,28 @@ font-size: 12px;
 font-weight: 500;
 gap: 4px;
 }
-.tag-neutral { background: var(–bg2); color: var(–text2); }
-.tag-accent { background: var(–accent-bg); color: var(–accent); }
-.tag-danger { background: var(–danger-bg); color: var(–danger); }
-.tag-success { background: var(–success-bg); color: var(–success); }
-.tag-warning { background: var(–warning-bg); color: var(–warning); }
+.tag-neutral { background: var(--bg2); color: var(--text2); }
+.tag-accent { background: var(--accent-bg); color: var(--accent); }
+.tag-danger { background: var(--danger-bg); color: var(--danger); }
+.tag-success { background: var(--success-bg); color: var(--success); }
+.tag-warning { background: var(--warning-bg); color: var(--warning); }
 
 /* FORMS */
 .form-group { margin-bottom: 16px; }
-.form-label { display: block; font-size: 13px; font-weight: 600; color: var(–text2); margin-bottom: 6px; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
 .form-control {
 width: 100%;
 padding: 10px 14px;
-border: 1px solid var(–border);
-border-radius: var(–radius2);
-background: var(–surface);
-color: var(–text);
-font-family: ‘DM Sans’, sans-serif;
+border: 1px solid var(--border);
+border-radius: var(--radius2);
+background: var(--surface);
+color: var(--text);
+font-family: 'DM Sans', sans-serif;
 font-size: 14px;
 transition: border-color 0.15s;
 outline: none;
 }
-.form-control:focus { border-color: var(–accent); }
+.form-control:focus { border-color: var(--accent); }
 textarea.form-control { resize: vertical; min-height: 90px; }
 select.form-control { cursor: pointer; }
 
@@ -403,20 +403,20 @@ select.form-control { cursor: pointer; }
 text-align: left;
 font-size: 12px;
 font-weight: 600;
-color: var(–text3);
+color: var(--text3);
 text-transform: uppercase;
 letter-spacing: 0.5px;
 padding: 10px 14px;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 }
 .table td {
 padding: 12px 14px;
 font-size: 14px;
-border-bottom: 1px solid var(–border);
-color: var(–text);
+border-bottom: 1px solid var(--border);
+color: var(--text);
 }
 .table tr:last-child td { border-bottom: none; }
-.table tr:hover td { background: var(–surface2); }
+.table tr:hover td { background: var(--surface2); }
 
 /* MODALS */
 .modal-overlay {
@@ -431,30 +431,30 @@ backdrop-filter: blur(3px);
 }
 .modal-overlay.open { display: flex; }
 .modal {
-background: var(–surface);
-border-radius: var(–radius);
+background: var(--surface);
+border-radius: var(--radius);
 width: 100%;
 max-width: 540px;
 max-height: 90vh;
 overflow-y: auto;
-box-shadow: var(–shadow2);
+box-shadow: var(--shadow2);
 }
 .modal-header {
 padding: 20px 24px 16px;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 display: flex;
 justify-content: space-between;
 align-items: center;
 }
-.modal-title { font-family: ‘Playfair Display’, serif; font-size: 20px; font-weight: 600; }
-.modal-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(–text3); padding: 4px; border-radius: 6px; }
-.modal-close:hover { background: var(–bg2); color: var(–text); }
+.modal-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
+.modal-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--text3); padding: 4px; border-radius: 6px; }
+.modal-close:hover { background: var(--bg2); color: var(--text); }
 .modal-body { padding: 20px 24px; }
 .modal-footer { padding: 12px 24px 20px; display: flex; gap: 10px; justify-content: flex-end; }
 
 /* ALERTS */
 .alert {
-border-radius: var(–radius2);
+border-radius: var(--radius2);
 padding: 12px 16px;
 font-size: 14px;
 display: flex;
@@ -463,18 +463,18 @@ gap: 10px;
 margin-bottom: 16px;
 }
 .alert-info { background: #eef4fd; color: #2a5898; border: 1px solid #c5d8f5; }
-.alert-warning { background: var(–warning-bg); color: var(–warning); border: 1px solid #e8d79a; }
-.alert-danger { background: var(–danger-bg); color: var(–danger); border: 1px solid #f5c6c6; }
-.alert-success { background: var(–success-bg); color: var(–success); border: 1px solid #b3dcc5; }
+.alert-warning { background: var(--warning-bg); color: var(--warning); border: 1px solid #e8d79a; }
+.alert-danger { background: var(--danger-bg); color: var(--danger); border: 1px solid #f5c6c6; }
+.alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #b3dcc5; }
 
 /* EMPTY STATES */
 .empty-state {
 text-align: center;
 padding: 50px 20px;
-color: var(–text3);
+color: var(--text3);
 }
 .empty-state .icon { font-size: 40px; margin-bottom: 14px; }
-.empty-state h3 { font-size: 16px; color: var(–text2); margin-bottom: 6px; }
+.empty-state h3 { font-size: 16px; color: var(--text2); margin-bottom: 6px; }
 .empty-state p { font-size: 14px; margin-bottom: 18px; }
 
 /* SEARCH BAR */
@@ -482,9 +482,9 @@ color: var(–text3);
 display: flex;
 align-items: center;
 gap: 8px;
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: var(–radius2);
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius2);
 padding: 8px 14px;
 margin-bottom: 16px;
 }
@@ -492,31 +492,31 @@ margin-bottom: 16px;
 border: none;
 outline: none;
 background: none;
-font-family: ‘DM Sans’, sans-serif;
+font-family: 'DM Sans', sans-serif;
 font-size: 14px;
-color: var(–text);
+color: var(--text);
 flex: 1;
 }
-.search-bar input::placeholder { color: var(–text3); }
+.search-bar input::placeholder { color: var(--text3); }
 
 /* AI CHAT */
 .ai-response {
 background: linear-gradient(135deg, #fdf8f4, #f9f5ef);
 border: 1px solid rgba(139,94,60,0.2);
-border-radius: var(–radius);
+border-radius: var(--radius);
 padding: 18px 20px;
 font-size: 14px;
 line-height: 1.8;
-color: var(–text);
+color: var(--text);
 margin-top: 16px;
 position: relative;
 }
 .ai-response::before {
-content: ‘✦ AI Analysis’;
+content: '✦ AI Analysis';
 display: block;
 font-size: 11px;
 font-weight: 600;
-color: var(–accent);
+color: var(--accent);
 letter-spacing: 0.5px;
 text-transform: uppercase;
 margin-bottom: 10px;
@@ -526,10 +526,10 @@ display: flex;
 gap: 5px;
 align-items: center;
 padding: 12px 0;
-color: var(–accent);
+color: var(--accent);
 font-size: 13px;
 }
-.dot { width: 6px; height: 6px; border-radius: 50%; background: var(–accent); animation: bounce 1.2s infinite; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: bounce 1.2s infinite; }
 .dot:nth-child(2) { animation-delay: 0.2s; }
 .dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-8px)} }
@@ -540,29 +540,29 @@ display: flex;
 align-items: flex-start;
 gap: 14px;
 padding: 14px 0;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 }
 .onboard-step:last-child { border-bottom: none; }
 .step-num {
 width: 28px; height: 28px;
 border-radius: 50%;
-background: var(–accent-bg);
-color: var(–accent);
+background: var(--accent-bg);
+color: var(--accent);
 font-weight: 700;
 font-size: 13px;
 display: flex; align-items: center; justify-content: center;
 flex-shrink: 0;
 }
-.step-num.done { background: var(–success-bg); color: var(–success); }
+.step-num.done { background: var(--success-bg); color: var(--success); }
 .step-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-.step-info p { font-size: 13px; color: var(–text3); }
+.step-info p { font-size: 13px; color: var(--text3); }
 
 /* TIMELINE */
 .timeline-item {
 display: flex;
 gap: 16px;
 padding: 12px 0;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 }
 .timeline-dot {
 width: 10px; height: 10px;
@@ -570,36 +570,36 @@ border-radius: 50%;
 margin-top: 5px;
 flex-shrink: 0;
 }
-.tl-incident { background: var(–danger); }
+.tl-incident { background: var(--danger); }
 .tl-evidence { background: #5b8dd9; }
-.tl-parenting { background: var(–success); }
-.tl-asset { background: var(–accent); }
+.tl-parenting { background: var(--success); }
+.tl-asset { background: var(--accent); }
 
 /* DAILY PROMPT */
 .prompt-card {
 background: linear-gradient(135deg, #fdf8f4, #f5ede4);
 border: 1px solid rgba(139,94,60,0.2);
-border-radius: var(–radius);
+border-radius: var(--radius);
 padding: 20px;
 margin-bottom: 20px;
 }
-.prompt-title { font-family: ‘Playfair Display’, serif; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-.prompt-sub { font-size: 13px; color: var(–text3); margin-bottom: 16px; }
+.prompt-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.prompt-sub { font-size: 13px; color: var(--text3); margin-bottom: 16px; }
 .prompt-questions { display: flex; flex-direction: column; gap: 10px; }
 .prompt-q {
 display: flex;
 align-items: center;
 gap: 12px;
 background: white;
-border: 1px solid var(–border);
-border-radius: var(–radius2);
+border: 1px solid var(--border);
+border-radius: var(--radius2);
 padding: 12px 14px;
 cursor: pointer;
 font-size: 14px;
 transition: all 0.15s;
 }
-.prompt-q:hover { border-color: var(–accent); background: var(–accent-bg); }
-.prompt-q input[type=checkbox] { accent-color: var(–accent); width: 16px; height: 16px; }
+.prompt-q:hover { border-color: var(--accent); background: var(--accent-bg); }
+.prompt-q input[type=checkbox] { accent-color: var(--accent); width: 16px; height: 16px; }
 
 /* ADMIN */
 .admin-header {
@@ -611,7 +611,7 @@ align-items: center;
 justify-content: space-between;
 }
 .admin-badge {
-background: var(–accent);
+background: var(--accent);
 color: white;
 font-size: 11px;
 font-weight: 700;
@@ -641,27 +641,27 @@ transition: all 0.15s;
 font-weight: 500;
 }
 .admin-nav-item:hover { background: #2d2922; color: white; }
-.admin-nav-item.active { background: var(–accent); color: white; }
+.admin-nav-item.active { background: var(--accent); color: white; }
 .admin-main { flex: 1; padding: 24px 28px; }
 
 /* PRICING */
 .pricing-card {
-background: var(–surface);
-border: 2px solid var(–border);
-border-radius: var(–radius);
+background: var(--surface);
+border: 2px solid var(--border);
+border-radius: var(--radius);
 padding: 28px;
 text-align: center;
 transition: all 0.2s;
 }
 .pricing-card.featured {
-border-color: var(–accent);
+border-color: var(--accent);
 position: relative;
 }
 .pricing-card.featured::before {
-content: ‘Most Popular’;
+content: 'Most Popular';
 position: absolute;
 top: -13px; left: 50%; transform: translateX(-50%);
-background: var(–accent);
+background: var(--accent);
 color: white;
 font-size: 11px;
 font-weight: 700;
@@ -670,27 +670,27 @@ border-radius: 100px;
 text-transform: uppercase;
 letter-spacing: 0.5px;
 }
-.price-amount { font-family: ‘Playfair Display’, serif; font-size: 42px; font-weight: 700; color: var(–text); }
-.price-period { font-size: 14px; color: var(–text3); }
+.price-amount { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--text); }
+.price-period { font-size: 14px; color: var(--text3); }
 .price-features { text-align: left; margin: 20px 0; display: flex; flex-direction: column; gap: 10px; }
 .price-feat { font-size: 14px; display: flex; align-items: center; gap: 8px; }
-.price-feat.yes { color: var(–text); }
-.price-feat.no { color: var(–text3); text-decoration: line-through; }
+.price-feat.yes { color: var(--text); }
+.price-feat.no { color: var(--text3); text-decoration: line-through; }
 
 /* SEVERITY */
-.sev-1 { color: var(–text3); }
-.sev-2 { color: var(–warning); }
+.sev-1 { color: var(--text3); }
+.sev-2 { color: var(--warning); }
 .sev-3 { color: #d47020; }
-.sev-4 { color: var(–danger); }
+.sev-4 { color: var(--danger); }
 .sev-5 { color: #8b0000; font-weight: 700; }
 
 /* FOOTER DISCLAIMER */
 .disclaimer {
-background: var(–bg2);
-border-top: 1px solid var(–border);
+background: var(--bg2);
+border-top: 1px solid var(--border);
 padding: 10px 24px;
 font-size: 11px;
-color: var(–text3);
+color: var(--text3);
 text-align: center;
 }
 
@@ -698,27 +698,27 @@ text-align: center;
 .toast {
 position: fixed;
 bottom: 24px; right: 24px;
-background: var(–text);
+background: var(--text);
 color: white;
 padding: 12px 18px;
-border-radius: var(–radius2);
+border-radius: var(--radius2);
 font-size: 14px;
 z-index: 2000;
 transform: translateY(80px);
 opacity: 0;
 transition: all 0.3s;
 max-width: 320px;
-box-shadow: var(–shadow2);
+box-shadow: var(--shadow2);
 }
 .toast.show { transform: translateY(0); opacity: 1; }
-.toast.success { background: var(–success); }
-.toast.error { background: var(–danger); }
+.toast.success { background: var(--success); }
+.toast.error { background: var(--danger); }
 
 /* UPGRADE BANNER */
 .upgrade-banner {
-background: linear-gradient(135deg, var(–accent-bg), #fdf5ec);
+background: linear-gradient(135deg, var(--accent-bg), #fdf5ec);
 border: 1px solid rgba(139,94,60,0.25);
-border-radius: var(–radius);
+border-radius: var(--radius);
 padding: 16px 20px;
 display: flex;
 align-items: center;
@@ -727,14 +727,14 @@ gap: 16px;
 margin-bottom: 20px;
 }
 .upgrade-banner p { font-size: 14px; }
-.upgrade-banner strong { color: var(–accent); }
+.upgrade-banner strong { color: var(--accent); }
 
 /* SECTION LOCK */
 .locked-overlay {
 position: relative;
 }
 .locked-overlay::after {
-content: ‘🔒 Upgrade to Pro to unlock’;
+content: '🔒 Upgrade to Pro to unlock';
 position: absolute;
 inset: 0;
 background: rgba(245,243,239,0.85);
@@ -743,15 +743,15 @@ align-items: center;
 justify-content: center;
 font-size: 14px;
 font-weight: 500;
-color: var(–text2);
-border-radius: var(–radius);
+color: var(--text2);
+border-radius: var(--radius);
 backdrop-filter: blur(2px);
 }
 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(–border); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
 /* AUTH SCREEN */
 #auth-screen {
@@ -759,29 +759,29 @@ min-height: 100vh;
 display: none;
 align-items: center;
 justify-content: center;
-background: var(–bg);
+background: var(--bg);
 padding: 24px;
 }
 
 .auth-card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: var(–radius);
+background: var(--surface);
+border: 1px solid var(--border);
+border-radius: var(--radius);
 padding: 40px;
 width: 100%;
 max-width: 420px;
-box-shadow: var(–shadow2);
+box-shadow: var(--shadow2);
 }
 .auth-logo {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 24px;
 font-weight: 700;
 text-align: center;
 margin-bottom: 6px;
 }
-.auth-logo span { color: var(–accent); }
-.auth-tagline { text-align: center; color: var(–text3); font-size: 14px; margin-bottom: 28px; }
-.auth-tabs { display: flex; border-bottom: 1px solid var(–border); margin-bottom: 24px; }
+.auth-logo span { color: var(--accent); }
+.auth-tagline { text-align: center; color: var(--text3); font-size: 14px; margin-bottom: 28px; }
+.auth-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
 .auth-tab {
 flex: 1;
 padding: 10px;
@@ -789,11 +789,11 @@ text-align: center;
 cursor: pointer;
 font-size: 14px;
 font-weight: 500;
-color: var(–text3);
+color: var(--text3);
 border-bottom: 2px solid transparent;
 transition: all 0.15s;
 }
-.auth-tab.active { color: var(–accent); border-bottom-color: var(–accent); }
+.auth-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -835,7 +835,7 @@ margin-top: 8px;
 .bar-col {
 flex: 1;
 border-radius: 3px 3px 0 0;
-background: var(–accent);
+background: var(--accent);
 opacity: 0.7;
 min-height: 4px;
 transition: opacity 0.2s;
@@ -947,7 +947,6 @@ transition: opacity 0.2s;
       <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</div>
     </div>
 
-```
 <!-- LOGIN -->
 <div id="login-form">
   <div class="form-group">
@@ -992,7 +991,6 @@ transition: opacity 0.2s;
     Already have an account? <a href="#" onclick="switchTab('login')" style="color:var(--accent);">Sign in</a>
   </div>
 </div>
-```
 
   </div>
 </div>
@@ -1019,7 +1017,6 @@ transition: opacity 0.2s;
       <div class="nav-item" onclick="showSection('evidence')"><span class="icon">📁</span> Evidence</div>
       <div class="nav-item" onclick="showSection('timeline')"><span class="icon">📅</span> Timeline</div>
 
-```
   <div class="sidebar-section">Financials</div>
   <div class="nav-item" onclick="showSection('assets')"><span class="icon">💰</span> Asset Tracker</div>
   <div class="nav-item" onclick="showSection('debts')"><span class="icon">💳</span> Debt Tracker</div>
@@ -1521,7 +1518,6 @@ transition: opacity 0.2s;
   </div>
 
 </div><!-- /main -->
-```
 
   </div><!-- /app-body -->
 
@@ -1561,7 +1557,6 @@ transition: opacity 0.2s;
     </div>
     <div class="admin-main">
 
-```
   <!-- ADMIN DASHBOARD -->
   <div class="section active" id="admin-dashboard">
     <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Business Overview</div>
@@ -1820,7 +1815,6 @@ transition: opacity 0.2s;
   </div>
 
 </div><!-- /admin-main -->
-```
 
   </div><!-- /admin-body -->
 </div><!-- /admin-view -->
@@ -2033,9 +2027,9 @@ const state = {
 user: null,
 isPro: false,
 incidents: [
-{ date: ‘Mar 18, 2025’, category: ‘Verbal Abuse’, desc: ‘Screaming and threatening language in front of children during pickup.’, severity: 4, people: ‘Spouse, Kids’, witnesses: ‘Neighbor’ },
-{ date: ‘Mar 12, 2025’, category: ‘Financial Secrecy’, desc: ‘Discovered $4,200 withdrawn from joint savings without discussion.’, severity: 3, people: ‘Spouse’, witnesses: ‘’ },
-{ date: ‘Mar 5, 2025’, category: ‘Custody Issue’, desc: ‘Did not show up for agreed Tuesday pickup. No communication provided.’, severity: 3, people: ‘Spouse, Child (Emma)’, witnesses: ‘’ },
+{ date: 'Mar 18, 2025', category: 'Verbal Abuse', desc: 'Screaming and threatening language in front of children during pickup.', severity: 4, people: 'Spouse, Kids', witnesses: 'Neighbor' },
+{ date: 'Mar 12, 2025', category: 'Financial Secrecy', desc: 'Discovered $4,200 withdrawn from joint savings without discussion.', severity: 3, people: 'Spouse', witnesses: '' },
+{ date: 'Mar 5, 2025', category: 'Custody Issue', desc: 'Did not show up for agreed Tuesday pickup. No communication provided.', severity: 3, people: 'Spouse, Child (Emma)', witnesses: '' },
 ],
 assets: [],
 debts: [],
@@ -2045,116 +2039,116 @@ evidence: [],
 
 // ══════════════════════ AUTH
 function showAuth(tab) {
-document.getElementById(‘landing’).style.display = ‘none’;
-document.getElementById(‘auth-screen’).style.display = ‘flex’;
+document.getElementById('landing').style.display = 'none';
+document.getElementById('auth-screen').style.display = 'flex';
 switchTab(tab);
 }
 
 function switchTab(tab) {
-document.getElementById(‘tab-login’).classList.toggle(‘active’, tab === ‘login’);
-document.getElementById(‘tab-signup’).classList.toggle(‘active’, tab === ‘signup’);
-document.getElementById(‘login-form’).style.display = tab === ‘login’ ? ‘block’ : ‘none’;
-document.getElementById(‘signup-form’).style.display = tab === ‘signup’ ? ‘block’ : ‘none’;
+document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
+document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
 }
 
 function doLogin() {
-const email = document.getElementById(‘login-email’).value;
-if (!email) { showToast(‘Please enter your email’,‘error’); return; }
-state.user = { name: ‘Jane Doe’, email, initials: ‘J’ };
+const email = document.getElementById('login-email').value;
+if (!email) { showToast('Please enter your email','error'); return; }
+state.user = { name: 'Jane Doe', email, initials: 'J' };
 launchApp();
 }
 
 function doSignup() {
-const first = document.getElementById(‘signup-first’).value;
-const email = document.getElementById(‘signup-email’).value;
-if (!first || !email) { showToast(‘Please fill in required fields’,‘error’); return; }
-state.user = { name: first + ’ ’ + (document.getElementById(‘signup-last’).value || ‘’), email, initials: first[0].toUpperCase() };
+const first = document.getElementById('signup-first').value;
+const email = document.getElementById('signup-email').value;
+if (!first || !email) { showToast('Please fill in required fields','error'); return; }
+state.user = { name: first + ' ' + (document.getElementById('signup-last').value || ''), email, initials: first[0].toUpperCase() };
 launchApp();
 }
 
 function loginAsAdmin() {
-document.getElementById(‘auth-screen’).style.display = ‘none’;
-document.getElementById(‘admin-view’).classList.add(‘open’);
+document.getElementById('auth-screen').style.display = 'none';
+document.getElementById('admin-view').classList.add('open');
 }
 
 function exitAdmin() {
-document.getElementById(‘admin-view’).classList.remove(‘open’);
-document.getElementById(‘landing’).style.display = ‘flex’;
+document.getElementById('admin-view').classList.remove('open');
+document.getElementById('landing').style.display = 'flex';
 }
 
 function launchApp() {
-document.getElementById(‘auth-screen’).style.display = ‘none’;
-document.getElementById(‘app’).style.display = ‘flex’;
-document.getElementById(‘user-avatar’).textContent = state.user.initials;
-document.getElementById(‘today-date’).textContent = new Date().toLocaleDateString(‘en-US’, {weekday:‘long’, month:‘long’, day:‘numeric’});
+document.getElementById('auth-screen').style.display = 'none';
+document.getElementById('app').style.display = 'flex';
+document.getElementById('user-avatar').textContent = state.user.initials;
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
 updateUsage();
-showToast(‘Welcome to DivorceVault 🔒’,‘success’);
+showToast('Welcome to DivorceVault 🔒','success');
 }
 
 // ══════════════════════ NAVIGATION
 function showSection(id) {
-document.querySelectorAll(’.section’).forEach(s => s.classList.remove(‘active’));
-document.querySelectorAll(’.nav-item’).forEach(n => n.classList.remove(‘active’));
-const el = document.getElementById(‘section-’ + id);
-if (el) el.classList.add(‘active’);
-document.querySelectorAll(’.nav-item’).forEach(n => {
-if (n.getAttribute(‘onclick’) && n.getAttribute(‘onclick’).includes(”’” + id + “’”)) n.classList.add(‘active’);
+document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+const el = document.getElementById('section-' + id);
+if (el) el.classList.add('active');
+document.querySelectorAll('.nav-item').forEach(n => {
+if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('active');
 });
 }
 
 function showPricing() {
-const ps = document.getElementById(‘pricing-section’);
-ps.style.display = ps.style.display === ‘none’ ? ‘block’ : ‘none’;
-if (ps.style.display === ‘block’) ps.scrollIntoView({behavior:‘smooth’});
+const ps = document.getElementById('pricing-section');
+ps.style.display = ps.style.display === 'none' ? 'block' : 'none';
+if (ps.style.display === 'block') ps.scrollIntoView({behavior:'smooth'});
 }
 
 // ══════════════════════ MODALS
-function openModal(id) { document.getElementById(id).classList.add(‘open’); }
-function closeModal(id) { document.getElementById(id).classList.remove(‘open’); }
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
 // Close modals on overlay click
-document.addEventListener(‘click’, e => {
-if (e.target.classList.contains(‘modal-overlay’)) e.target.classList.remove(‘open’);
+document.addEventListener('click', e => {
+if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('open');
 });
 
 // ══════════════════════ INCIDENTS
 function saveIncident() {
-const date = document.getElementById(‘inc-date’).value;
-const cat = document.getElementById(‘inc-cat’).value;
-const desc = document.getElementById(‘inc-desc’).value;
-if (!date || !cat || !desc) { showToast(‘Please fill in required fields’,‘error’); return; }
+const date = document.getElementById('inc-date').value;
+const cat = document.getElementById('inc-cat').value;
+const desc = document.getElementById('inc-desc').value;
+if (!date || !cat || !desc) { showToast('Please fill in required fields','error'); return; }
 
 if (!state.isPro && state.incidents.length >= 5) {
-closeModal(‘add-incident-modal’);
+closeModal('add-incident-modal');
 openUpgrade();
 return;
 }
 
 const inc = {
-date: new Date(date).toLocaleDateString(‘en-US’, {month:‘short’, day:‘numeric’, year:‘numeric’}),
+date: new Date(date).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}),
 category: cat,
 desc,
-severity: parseInt(document.getElementById(‘inc-severity’).value),
-people: document.getElementById(‘inc-people’).value,
-witnesses: document.getElementById(‘inc-witnesses’).value,
+severity: parseInt(document.getElementById('inc-severity').value),
+people: document.getElementById('inc-people').value,
+witnesses: document.getElementById('inc-witnesses').value,
 };
 state.incidents.unshift(inc);
 renderIncidents();
 updateStats();
 updateUsage();
-closeModal(‘add-incident-modal’);
-showToast(‘Incident logged ✓’,‘success’);
+closeModal('add-incident-modal');
+showToast('Incident logged ✓','success');
 
 // Reset form
-[‘inc-date’,‘inc-time’,‘inc-desc’,‘inc-people’,‘inc-witnesses’].forEach(id => document.getElementById(id).value = ‘’);
-document.getElementById(‘inc-cat’).value = ‘’;
-document.getElementById(‘inc-severity’).value = ‘3’;
+['inc-date','inc-time','inc-desc','inc-people','inc-witnesses'].forEach(id => document.getElementById(id).value = '');
+document.getElementById('inc-cat').value = '';
+document.getElementById('inc-severity').value = '3';
 }
 
 function renderIncidents() {
-const tbody = document.getElementById(‘incidents-tbody’);
-const filter = document.getElementById(‘incident-search’)?.value?.toLowerCase() || ‘’;
-const catFilter = document.getElementById(‘cat-filter’)?.value || ‘’;
+const tbody = document.getElementById('incidents-tbody');
+const filter = document.getElementById('incident-search')?.value?.toLowerCase() || '';
+const catFilter = document.getElementById('cat-filter')?.value || '';
 
 const rows = state.incidents.filter(i => {
 const matchText = !filter || i.desc.toLowerCase().includes(filter) || i.category.toLowerCase().includes(filter) || i.people.toLowerCase().includes(filter);
@@ -2163,38 +2157,38 @@ return matchText && matchCat;
 });
 
 tbody.innerHTML = rows.map(i => {
-const sevMap = {1:‘sev-1’,2:‘sev-2’,3:‘sev-3’,4:‘sev-4’,5:‘sev-5’};
-const sevLabel = {1:‘● Minimal’,2:‘●● Low’,3:‘●●● Medium’,4:‘●●●● High’,5:‘●●●●● Severe’};
+const sevMap = {1:'sev-1',2:'sev-2',3:'sev-3',4:'sev-4',5:'sev-5'};
+const sevLabel = {1:'● Minimal',2:'●● Low',3:'●●● Medium',4:'●●●● High',5:'●●●●● Severe'};
 const tagClass = {
-‘Verbal Abuse’:‘tag-danger’,‘Financial Secrecy’:‘tag-warning’,‘Custody Issue’:‘tag-neutral’,
-‘Threats’:‘tag-danger’,‘Manipulation’:‘tag-warning’,‘Physical Altercation’:‘tag-danger’,
-‘Property Destruction’:‘tag-danger’,‘Disappearance’:‘tag-neutral’,‘Other’:‘tag-neutral’
+'Verbal Abuse':'tag-danger','Financial Secrecy':'tag-warning','Custody Issue':'tag-neutral',
+'Threats':'tag-danger','Manipulation':'tag-warning','Physical Altercation':'tag-danger',
+'Property Destruction':'tag-danger','Disappearance':'tag-neutral','Other':'tag-neutral'
 };
 return `<tr> <td>${i.date}</td> <td><span class="tag ${tagClass[i.category]||'tag-neutral'}">${i.category}</span></td> <td style="max-width:200px;">${i.desc}</td> <td><span class="${sevMap[i.severity]}">${sevLabel[i.severity]}</span></td> <td>${i.people||'—'}</td> <td><button class="btn btn-ghost btn-sm">View</button></td> </tr>`;
-}).join(’’);
+}).join('');
 }
 
 function filterIncidents() { renderIncidents(); }
 
 // ══════════════════════ ASSETS
 function saveAsset() {
-const name = document.getElementById(‘asset-name’).value;
-if (!name) { showToast(‘Please enter an asset name’,‘error’); return; }
+const name = document.getElementById('asset-name').value;
+if (!name) { showToast('Please enter an asset name','error'); return; }
 const asset = {
-name, category: document.getElementById(‘asset-cat’).value,
-value: parseInt(document.getElementById(‘asset-value’).value)||0,
-owner: document.getElementById(‘asset-owner’).value,
-notes: document.getElementById(‘asset-notes’).value,
+name, category: document.getElementById('asset-cat').value,
+value: parseInt(document.getElementById('asset-value').value)||0,
+owner: document.getElementById('asset-owner').value,
+notes: document.getElementById('asset-notes').value,
 };
 state.assets.push(asset);
-const tbody = document.getElementById(‘assets-tbody’);
-const tagMap = {‘Real Estate’:‘tag-accent’,‘Vehicle’:‘tag-neutral’,‘Bank Account’:‘tag-warning’,‘Retirement Account’:‘tag-success’,‘Crypto’:‘tag-neutral’,‘Business Asset’:‘tag-accent’,‘Valuable / Jewelry’:‘tag-accent’,‘Other’:‘tag-neutral’};
-tbody.insertAdjacentHTML(‘beforeend’, `<tr>
+const tbody = document.getElementById('assets-tbody');
+const tagMap = {'Real Estate':'tag-accent','Vehicle':'tag-neutral','Bank Account':'tag-warning','Retirement Account':'tag-success','Crypto':'tag-neutral','Business Asset':'tag-accent','Valuable / Jewelry':'tag-accent','Other':'tag-neutral'};
+tbody.insertAdjacentHTML('beforeend', `<tr>
 <td>${asset.name}</td>
 <td><span class="tag ${tagMap[asset.category]||'tag-neutral'}">${asset.category}</span></td>
 <td>$${asset.value.toLocaleString()}</td>
 <td>${asset.owner}</td>
-<td>${asset.notes||’—’}</td>
+<td>${asset.notes||'—'}</td>
 <td><button class="btn btn-ghost btn-sm">Edit</button></td>
 
   </tr>`);
@@ -2205,18 +2199,18 @@ tbody.insertAdjacentHTML(‘beforeend’, `<tr>
 
 // ══════════════════════ DEBTS
 function saveDebt() {
-const name = document.getElementById(‘debt-name’).value;
-if (!name) { showToast(‘Please enter a debt name’,‘error’); return; }
+const name = document.getElementById('debt-name').value;
+if (!name) { showToast('Please enter a debt name','error'); return; }
 const debt = {
-name, type: document.getElementById(‘debt-type’).value,
-balance: parseInt(document.getElementById(‘debt-balance’).value)||0,
-owner: document.getElementById(‘debt-owner’).value,
-monthly: parseInt(document.getElementById(‘debt-monthly’).value)||0,
+name, type: document.getElementById('debt-type').value,
+balance: parseInt(document.getElementById('debt-balance').value)||0,
+owner: document.getElementById('debt-owner').value,
+monthly: parseInt(document.getElementById('debt-monthly').value)||0,
 };
 state.debts.push(debt);
-const tbody = document.querySelector(’#section-debts tbody’);
-const tagMap = {‘Mortgage’:‘tag-accent’,‘Credit Card’:‘tag-danger’,‘Personal Loan’:‘tag-neutral’,‘Tax Debt’:‘tag-danger’,‘Student Loan’:‘tag-neutral’,‘Other’:‘tag-neutral’};
-tbody.insertAdjacentHTML(‘beforeend’, `<tr>
+const tbody = document.querySelector('#section-debts tbody');
+const tagMap = {'Mortgage':'tag-accent','Credit Card':'tag-danger','Personal Loan':'tag-neutral','Tax Debt':'tag-danger','Student Loan':'tag-neutral','Other':'tag-neutral'};
+tbody.insertAdjacentHTML('beforeend', `<tr>
 <td>${debt.name}</td>
 <td><span class="tag ${tagMap[debt.type]||'tag-neutral'}">${debt.type}</span></td>
 <td>$${debt.balance.toLocaleString()}</td>
@@ -2232,21 +2226,21 @@ tbody.insertAdjacentHTML(‘beforeend’, `<tr>
 
 // ══════════════════════ PARENTING
 function saveParenting() {
-const date = document.getElementById(‘par-date’).value;
-const details = document.getElementById(‘par-details’).value;
-if (!date || !details) { showToast(‘Please fill in required fields’,‘error’); return; }
+const date = document.getElementById('par-date').value;
+const details = document.getElementById('par-details').value;
+if (!date || !details) { showToast('Please fill in required fields','error'); return; }
 const entry = {
-date: new Date(date).toLocaleDateString(‘en-US’, {month:‘short’, day:‘numeric’, year:‘numeric’}),
-type: document.getElementById(‘par-type’).value,
-child: document.getElementById(‘par-child’).value||’—’,
+date: new Date(date).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}),
+type: document.getElementById('par-type').value,
+child: document.getElementById('par-child').value||'—',
 details,
-resolved: document.getElementById(‘par-resolved’).value,
+resolved: document.getElementById('par-resolved').value,
 };
 state.parenting.push(entry);
-const tbody = document.getElementById(‘parenting-tbody’);
-const tagMap = {‘Missed Pickup’:‘tag-danger’,‘Late Pickup’:‘tag-warning’,‘Communication Issue’:‘tag-warning’,‘Behavior Concern’:‘tag-warning’,‘School Issue’:‘tag-neutral’,‘Violation of Order’:‘tag-danger’,‘Positive’:‘tag-success’,‘Other’:‘tag-neutral’};
-const resMap = {‘No’:‘tag-danger’,‘Yes’:‘tag-success’,‘N/A’:‘tag-neutral’};
-tbody.insertAdjacentHTML(‘beforeend’, `<tr>
+const tbody = document.getElementById('parenting-tbody');
+const tagMap = {'Missed Pickup':'tag-danger','Late Pickup':'tag-warning','Communication Issue':'tag-warning','Behavior Concern':'tag-warning','School Issue':'tag-neutral','Violation of Order':'tag-danger','Positive':'tag-success','Other':'tag-neutral'};
+const resMap = {'No':'tag-danger','Yes':'tag-success','N/A':'tag-neutral'};
+tbody.insertAdjacentHTML('beforeend', `<tr>
 <td>${entry.date}</td>
 <td><span class="tag ${tagMap[entry.type]||'tag-neutral'}">${entry.type}</span></td>
 <td>${entry.child}</td>
@@ -2264,122 +2258,122 @@ tbody.insertAdjacentHTML(‘beforeend’, `<tr>
 // ══════════════════════ EVIDENCE
 function saveEvidence() {
 if (!state.isPro && (state.evidence.length + 2) >= 5) {
-closeModal(‘add-evidence-modal’);
+closeModal('add-evidence-modal');
 openUpgrade();
 return;
 }
-state.evidence.push({ tag: document.getElementById(‘ev-tag’).value, date: document.getElementById(‘ev-date’).value });
-closeModal(‘add-evidence-modal’);
-showToast(‘Evidence saved ✓’,‘success’);
+state.evidence.push({ tag: document.getElementById('ev-tag').value, date: document.getElementById('ev-date').value });
+closeModal('add-evidence-modal');
+showToast('Evidence saved ✓','success');
 updateStats();
 updateUsage();
 }
 
 // ══════════════════════ AI ANALYSIS
 async function runAIAnalysis() {
-const btn = document.querySelector(’#section-ai-analysis .btn-primary’);
-const loading = document.getElementById(‘ai-loading’);
-const output = document.getElementById(‘ai-analysis-output’);
-btn.disabled = true; btn.textContent = ‘Analyzing…’;
-loading.style.display = ‘block’;
-output.style.display = ‘none’;
+const btn = document.querySelector('#section-ai-analysis .btn-primary');
+const loading = document.getElementById('ai-loading');
+const output = document.getElementById('ai-analysis-output');
+btn.disabled = true; btn.textContent = 'Analyzing…';
+loading.style.display = 'block';
+output.style.display = 'none';
 
-const incidentSummary = state.incidents.map(i => `${i.date}: ${i.category} — ${i.desc}`).join(’\n’);
+const incidentSummary = state.incidents.map(i => `${i.date}: ${i.category} — ${i.desc}`).join('\n');
 
 try {
-const res = await fetch(‘https://api.anthropic.com/v1/messages’, {
-method: ‘POST’,
-headers: { ‘Content-Type’: ‘application/json’ },
+const res = await fetch('https://api.anthropic.com/v1/messages', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({
-model: ‘claude-sonnet-4-20250514’,
+model: 'claude-sonnet-4-20250514',
 max_tokens: 1000,
 messages: [{
-role: ‘user’,
+role: 'user',
 content: `You are a supportive assistant helping a person document their divorce process. Analyze the following incidents and identify behavioral patterns such as financial control, verbal intimidation, custody inconsistency, manipulation, or property concealment. Provide actionable, compassionate guidance. Be specific but never provide legal advice — always recommend consulting an attorney.\n\nIncidents documented:\n${incidentSummary}\n\nProvide a structured analysis with: (1) Identified patterns, (2) Specific observations, (3) Recommended next steps. Keep it under 300 words, clear and empowering.`
 }]
 })
 });
 const data = await res.json();
-const text = data.content?.map(c => c.text||’’).join(’\n’) || ‘Analysis complete. Please review your documented incidents.’;
-document.getElementById(‘ai-full-text’).innerHTML = text.replace(/\n/g, ‘<br>’);
+const text = data.content?.map(c => c.text||'').join('\n') || 'Analysis complete. Please review your documented incidents.';
+document.getElementById('ai-full-text').innerHTML = text.replace(/\n/g, '<br>');
 } catch(e) {
-document.getElementById(‘ai-full-text’).innerHTML = ‘Analysis ready based on your documentation. Pattern of financial secrecy and custody inconsistency detected. Recommend securing financial records and continuing to log all custody events.’;
+document.getElementById('ai-full-text').innerHTML = 'Analysis ready based on your documentation. Pattern of financial secrecy and custody inconsistency detected. Recommend securing financial records and continuing to log all custody events.';
 }
 
-loading.style.display = ‘none’;
-output.style.display = ‘block’;
-btn.disabled = false; btn.textContent = ‘✦ Run Full Analysis’;
+loading.style.display = 'none';
+output.style.display = 'block';
+btn.disabled = false; btn.textContent = '✦ Run Full Analysis';
 }
 
 // ══════════════════════ ADMIN AI ADVISOR
 async function runAdvisor() {
-const input = document.getElementById(‘advisor-input’).value;
-if (!input) { showToast(‘Please enter a question’,’’); return; }
-const loading = document.getElementById(‘advisor-loading’);
-const output = document.getElementById(‘advisor-output’);
-loading.style.display = ‘block’;
-output.style.display = ‘none’;
+const input = document.getElementById('advisor-input').value;
+if (!input) { showToast('Please enter a question',''); return; }
+const loading = document.getElementById('advisor-loading');
+const output = document.getElementById('advisor-output');
+loading.style.display = 'block';
+output.style.display = 'none';
 
 try {
-const res = await fetch(‘https://api.anthropic.com/v1/messages’, {
-method: ‘POST’,
-headers: { ‘Content-Type’: ‘application/json’ },
+const res = await fetch('https://api.anthropic.com/v1/messages', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({
-model: ‘claude-sonnet-4-20250514’,
+model: 'claude-sonnet-4-20250514',
 max_tokens: 1000,
 messages: [{
-role: ‘user’,
+role: 'user',
 content: `You are a strategic AI business advisor for DivorceVault, a SaaS divorce documentation platform. Platform stats: 1,247 users, 312 paid subscribers (25% conversion), $5,928 MRR, 3.2% churn. Top features by usage: Incident Log 89%, Evidence Upload 72%, AI Analysis 58%, Asset Tracker 44%. Traffic: Google Organic 42%, TikTok 28%, Facebook 15%.\n\nAdmin question: ${input}\n\nProvide concrete, actionable strategic advice in 150-200 words.`
 }]
 })
 });
 const data = await res.json();
-const text = data.content?.map(c => c.text||’’).join(’\n’) || ‘Strategic analysis complete.’;
-output.innerHTML = text.replace(/\n/g, ‘<br>’);
+const text = data.content?.map(c => c.text||'').join('\n') || 'Strategic analysis complete.';
+output.innerHTML = text.replace(/\n/g, '<br>');
 } catch(e) {
-output.innerHTML = ‘Strategic recommendation: Focus on TikTok growth (28% traffic, high intent audience). Launch a retargeting campaign for free users at log limit — estimated 40% conversion uplift.’;
+output.innerHTML = 'Strategic recommendation: Focus on TikTok growth (28% traffic, high intent audience). Launch a retargeting campaign for free users at log limit — estimated 40% conversion uplift.';
 }
 
-loading.style.display = ‘none’;
-output.style.display = ‘block’;
+loading.style.display = 'none';
+output.style.display = 'block';
 }
 
 function generateAdCopy() {
-document.getElementById(‘ad-copy-output’).style.display = ‘block’;
-showToast(‘Ad copy generated ✓’,‘success’);
+document.getElementById('ad-copy-output').style.display = 'block';
+showToast('Ad copy generated ✓','success');
 }
 
 // ══════════════════════ ADMIN NAV
 function adminNav(el, sectionId) {
-document.querySelectorAll(’.admin-nav-item’).forEach(n => n.classList.remove(‘active’));
-el.classList.add(‘active’);
-document.querySelectorAll(’#admin-view .section’).forEach(s => s.classList.remove(‘active’));
+document.querySelectorAll('.admin-nav-item').forEach(n => n.classList.remove('active'));
+el.classList.add('active');
+document.querySelectorAll('#admin-view .section').forEach(s => s.classList.remove('active'));
 const sec = document.getElementById(sectionId);
-if (sec) sec.classList.add(‘active’);
+if (sec) sec.classList.add('active');
 }
 
 // ══════════════════════ UPGRADE
-function openUpgrade() { openModal(‘upgrade-modal’); }
+function openUpgrade() { openModal('upgrade-modal'); }
 
 function simulatePayment(plan) {
-closeModal(‘upgrade-modal’);
-showToast(‘Stripe payment flow would open here. Upgrading demo to Pro…’,‘success’);
+closeModal('upgrade-modal');
+showToast('Stripe payment flow would open here. Upgrading demo to Pro…','success');
 setTimeout(() => {
 state.isPro = true;
-document.getElementById(‘plan-badge-el’).textContent = plan === ‘annual’ ? ‘Pro Annual’ : ‘Pro Monthly’;
-document.getElementById(‘plan-badge-el’).className = ‘plan-badge plan-paid’;
-document.querySelectorAll(’.upgrade-banner’).forEach(b => b.style.display = ‘none’);
-document.querySelectorAll(’.locked-overlay’).forEach(b => b.classList.remove(‘locked-overlay’));
+document.getElementById('plan-badge-el').textContent = plan === 'annual' ? 'Pro Annual' : 'Pro Monthly';
+document.getElementById('plan-badge-el').className = 'plan-badge plan-paid';
+document.querySelectorAll('.upgrade-banner').forEach(b => b.style.display = 'none');
+document.querySelectorAll('.locked-overlay').forEach(b => b.classList.remove('locked-overlay'));
 updateUsage();
-showToast(‘Pro Plan activated! 🎉 All features unlocked.’,‘success’);
+showToast('Pro Plan activated! 🎉 All features unlocked.','success');
 }, 1000);
 }
 
 // ══════════════════════ STATS & USAGE
 function updateStats() {
-document.getElementById(‘stat-incidents’).textContent = state.incidents.length;
-document.getElementById(‘stat-evidence’).textContent = state.evidence.length + 2;
-document.getElementById(‘stat-parenting’).textContent = state.parenting.length + 2;
+document.getElementById('stat-incidents').textContent = state.incidents.length;
+document.getElementById('stat-evidence').textContent = state.evidence.length + 2;
+document.getElementById('stat-parenting').textContent = state.parenting.length + 2;
 }
 
 function updateUsage() {
@@ -2389,39 +2383,37 @@ const evCount = state.evidence.length + 2;
 
 if (!state.isPro) {
 const incPct = Math.min(100, (incCount/maxFree)*100);
-document.getElementById(‘inc-bar’).style.width = incPct + ‘%’;
-document.getElementById(‘inc-bar’).className = ‘bar-fill’ + (incPct >= 80 ? ’ warn’ : ‘’);
-document.getElementById(‘inc-usage-label’).textContent = `${incCount}/${maxFree}`;
+document.getElementById('inc-bar').style.width = incPct + '%';
+document.getElementById('inc-bar').className = 'bar-fill' + (incPct >= 80 ? ' warn' : '');
+document.getElementById('inc-usage-label').textContent = `${incCount}/${maxFree}`;
 
-```
 const evPct = Math.min(100, (evCount/maxFree)*100);
 document.getElementById('ev-bar').style.width = evPct + '%';
 document.getElementById('ev-usage-label').textContent = `${evCount}/${maxFree}`;
-```
 
 } else {
-document.getElementById(‘inc-bar’).style.width = ‘100%’;
-document.getElementById(‘inc-bar’).className = ‘bar-fill’;
-document.getElementById(‘inc-usage-label’).textContent = `${incCount} (unlimited)`;
-document.getElementById(‘ev-bar’).style.width = ‘100%’;
-document.getElementById(‘ev-usage-label’).textContent = `${evCount} (unlimited)`;
+document.getElementById('inc-bar').style.width = '100%';
+document.getElementById('inc-bar').className = 'bar-fill';
+document.getElementById('inc-usage-label').textContent = `${incCount} (unlimited)`;
+document.getElementById('ev-bar').style.width = '100%';
+document.getElementById('ev-usage-label').textContent = `${evCount} (unlimited)`;
 }
 }
 
 // ══════════════════════ TOAST
-function showToast(msg, type=’’) {
-const t = document.getElementById(‘toast’);
+function showToast(msg, type='') {
+const t = document.getElementById('toast');
 t.textContent = msg;
-t.className = ‘toast show’ + (type ? ’ ’ + type : ‘’);
+t.className = 'toast show' + (type ? ' ' + type : '');
 clearTimeout(window._toastTimer);
-window._toastTimer = setTimeout(() => { t.className = ‘toast’; }, 3000);
+window._toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
 }
 
 // ══════════════════════ INIT
 try {
-document.getElementById(‘inc-date’).value = new Date().toISOString().split(‘T’)[0];
-document.getElementById(‘ev-date’).value = new Date().toISOString().split(‘T’)[0];
-document.getElementById(‘par-date’).value = new Date().toISOString().split(‘T’)[0];
+document.getElementById('inc-date').value = new Date().toISOString().split('T')[0];
+document.getElementById('ev-date').value = new Date().toISOString().split('T')[0];
+document.getElementById('par-date').value = new Date().toISOString().split('T')[0];
 } catch(e) {}
 </script>
 
