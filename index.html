@@ -947,7 +947,6 @@ transition: opacity 0.2s;
       <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</div>
     </div>
 
-```
 <!-- LOGIN -->
 <div id="login-form">
   <div class="form-group">
@@ -992,7 +991,6 @@ transition: opacity 0.2s;
     Already have an account? <a href="#" onclick="switchTab('login')" style="color:var(--accent);">Sign in</a>
   </div>
 </div>
-```
 
   </div>
 </div>
@@ -1019,7 +1017,6 @@ transition: opacity 0.2s;
       <div class="nav-item" onclick="showSection('evidence')"><span class="icon">📁</span> Evidence</div>
       <div class="nav-item" onclick="showSection('timeline')"><span class="icon">📅</span> Timeline</div>
 
-```
   <div class="sidebar-section">Financials</div>
   <div class="nav-item" onclick="showSection('assets')"><span class="icon">💰</span> Asset Tracker</div>
   <div class="nav-item" onclick="showSection('debts')"><span class="icon">💳</span> Debt Tracker</div>
@@ -1521,7 +1518,6 @@ transition: opacity 0.2s;
   </div>
 
 </div><!-- /main -->
-```
 
   </div><!-- /app-body -->
 
@@ -1561,7 +1557,6 @@ transition: opacity 0.2s;
     </div>
     <div class="admin-main">
 
-```
   <!-- ADMIN DASHBOARD -->
   <div class="section active" id="admin-dashboard">
     <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:20px;">Business Overview</div>
@@ -1820,7 +1815,6 @@ transition: opacity 0.2s;
   </div>
 
 </div><!-- /admin-main -->
-```
 
   </div><!-- /admin-body -->
 </div><!-- /admin-view -->
@@ -2393,11 +2387,9 @@ document.getElementById(‘inc-bar’).style.width = incPct + ‘%’;
 document.getElementById(‘inc-bar’).className = ‘bar-fill’ + (incPct >= 80 ? ’ warn’ : ‘’);
 document.getElementById(‘inc-usage-label’).textContent = `${incCount}/${maxFree}`;
 
-```
 const evPct = Math.min(100, (evCount/maxFree)*100);
 document.getElementById('ev-bar').style.width = evPct + '%';
 document.getElementById('ev-usage-label').textContent = `${evCount}/${maxFree}`;
-```
 
 } else {
 document.getElementById(‘inc-bar’).style.width = ‘100%’;
